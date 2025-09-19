@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <!--  RWD  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>護理創新與人工智慧應用人才培育計畫</title>
+    <meta name="description" content="KMU <護理創新與人工智慧應用人才培育計畫> 課程資訊、選課網頁">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div style="font-weight: bold; font-size: 150%">
+                    <a href="home_page.html">護理創新與人工智慧應用人才培育計畫</a>
+                </div>
+                <div style="margin-left: auto; display: flex; gap: 12px; align-items: center">
+                    <a href="#home">首頁</a>
+                    <a href="#syllabus">課程資訊</a>
+                    <a href="home_page.html/course_selection">選課系統</a>
+                    <a href="#contact">聯絡我們</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero container">
+            <div>
+                <h1 style="margin:0; font-size: clamp(1.5rem, 2.8vw, 2.4rem)">課程說明</h1>
+                <p style="margin:6px 0 0">為協助護理系所碩博士班學生培養具備跨域整合能力，能將人工智慧技術應用於臨床實務與護理創新中。
+                透過系統性課程設計，學生將具備基本編程能力、並透過了解 AI 概念及應用過程開發適用於臨床照護之虛擬實境模擬訓練場景與聊天機器人，以強化醫護產業人員的溝通訓練及健康促進之 AI 應用能力。</p>
+            </div>
+
+            <div style="min-width:220px; max-width:360px">
+                <div class="card">
+                    <strong>最新消息</strong>
+                    <ul style="margin:8px 0 0; padding-left:16px; line-height:1.6">
+                        <li>2025/xx/xx - 開放選課</li>
+                        <li>2025/xx/xx - 課程資訊更新</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="syllabus" class="container" style="padding-top:20px">
+            <h2>課程資訊</h2>
+            <h3>課程地圖</h3>
+                <img src="">
+            <h3>課程一覽</h3>
+        </section>
+
+        <section id="contact" class="container" style="padding-top:20px; padding-bottom:40px">
+            <h2>聯絡我們</h2>
+            <p>高雄醫學大學 人工智慧生醫研究院<br>
+            地址：80778 高雄市三民區十全一路100號<br>
+            電話：<br>
+            Email：</p>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div style="display: flex; justify-content: space; space-between; align-items:center; flex-wrap:wrap">
+                <div>© 2024 高雄醫學大學 人工智慧生醫研究院</div>
+        </div>
+    </footer>
+
+    <script>
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+      });
+    });
+  </script>
+</body>
+</html>
