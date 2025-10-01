@@ -1,0 +1,607 @@
+/* ================================
+   全站通用設定
+================================= */
+
+/* 定義網站的共用顏色變數，方便日後維護 */
+:root {
+  --accent: #134e19;        /* 主色（深藍色，用於按鈕、連結等） */
+  --accent-dark: #134e19;   /* 深藍，用於 tag 字色 */
+  --muted: #666;            /* 輔助文字顏色（灰色） */
+  --gap: 20px;              /* 元素間距 */
+  --radius: 10px;           /* 卡片圓角 */
+  --card-bg: #ffffff;          /* 卡片背景色 */
+  --max-width: 980px;       /* 主要容器寬度 */
+}
+
+/* 所有元素都改成 border-box，讓寬高計算包含 padding 與 border */
+* {
+  box-sizing: border-box;
+}
+
+/* 基本文字樣式設定 */
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans TC', Helvetica, Arial;
+  line-height: 1.5;
+  margin: 0;
+  color: #111;
+  background: #ffffff;
+}
+
+/* ================================
+   容器
+================================= */
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ================================
+   頁首 Header
+================================= */
+
+header {
+  background: linear-gradient(90deg, #fafafa, rgb(236, 236, 236));
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+}
+
+header .container {
+  max-width: 1500px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+header .container .title,
+header .container .title a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+/* 導航列 */
+nav {
+  margin-left: auto;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+nav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--accent-dark);
+}
+
+/* ================================
+   內容排版
+================================= */
+#home {
+  padding: 30px 0;
+}
+
+#home h2 {
+  font-size: 36px;
+  font-size:clamp(1.5rem,2.8vw,2.4rem);
+  text-align: center;
+  margin: 10px 0 40px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+#home p {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+#calendar h2 {
+  font-size: 36px;
+  font-size:clamp(1.5rem,2.8vw,2.4rem);
+  text-align: center;
+  margin: 80px 0 40px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+/* ================================
+   首頁 消息
+================================= */
+#news {
+  padding: 30px 0 90px;
+}
+
+#news h2 {
+  font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+  text-align: center;
+  margin: 10px 0 40px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.news-segregator {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.news-auto,
+.news-manual {
+  flex: 1 1 0;
+  min-width: 280px;
+}
+
+.manual-container,
+.auto-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--gap);
+  width: 95%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.news-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  box-shadow: 0 6px 10px rgba(99, 80, 52, 0.08);
+  border: 1px solid rgba(23, 70, 121, 0.04);
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: transform 0.2s ease;
+}
+
+.news-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 標籤和標題間距 */
+  font-size: 1.2rem;
+}
+
+.status-tag {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.status-open {
+  background-color: #42b55d43; /* 綠色 = 開放報名 */
+    color: #158c31;              /* 深綠色字 */
+}
+
+.status-closed {
+  background-color: #df566457; /* 紅色 = 報名截止 */
+    color: #9d1422;              /* 深紅色字 */
+}
+
+.news-card:hover {
+  transform: translateY(-3px);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.news-date {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.manual-container h3,
+.auto-container h3 {
+  margin: 6px 0 12px;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  line-height: 1.18;
+}
+
+.manual-container h3 {
+  color: #111;
+}
+
+.news-auto h3 a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.news-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* ================================
+   首頁 聯合師資
+================================= */
+
+.colab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--gap);
+  width: 95%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.colab-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 14px 16px;      /* 減少空白 */
+  box-shadow: 0 8px 18px rgba(106, 78, 40, 0.08);
+  border: 1px solid rgba(18, 59, 102, 0.093);
+  min-height: 80px;        /* 可再依內容調整 */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;                /* 讓內容間距更緊湊 */
+}
+
+.colab-card h3 {
+  margin: 6px 0 0;
+  font-size: 15px;
+  line-height: 1.18;
+  text-align: center;
+}
+
+.more-info {
+    display: flex;                   /* 讓內部按鈕水平排列 */
+    justify-content: center;
+    width: 100%;              /* 讓它撐滿卡片 */
+}
+
+.buttons-split {
+    display: flex;                   /* 讓內部按鈕水平排列 */
+    justify-content: center;        /* 按鈕間距拉開 */
+    gap: 12px;                      /* 按鈕間距 */
+    background: 0 !important;
+    width: 100%;
+}
+
+.buttons-split a {
+  display: block;
+  width: 100%;
+  background-color: #e0ecd7; /* 按鈕顏色 */
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.colab-card:hover {
+  transform: translateY(-3px);
+  transition: all 0.2s ease;
+}
+
+.more-info a {
+  display: block;          /* 讓底色延伸整段 */
+  width: 100%;
+  background: #e0ecd7;
+  padding: 6px 0;          /* 上下留白，左右不用 */
+  border-radius: 6px;
+  font-size: 15px;
+  text-align: center;
+  font-weight: 600;
+  color: #4c7e25;
+  text-decoration: none;
+}
+
+/* ================================
+    課程介紹排版
+================================= */
+#syllabus.container {
+  max-width: 1200px; /* 原本是 980px，可依需求再加大 */
+  margin: 0 auto;
+  padding: 30px 0 20px;   /* 左右留白可加大一點 */
+}
+
+#syllabus h2 {
+  font-size: 36px;
+  font-size:clamp(1.5rem,2.8vw,2.4rem);
+  text-align: center;
+  margin: 10px 0 30px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.section-header {
+  position: relative;   /* 讓子元素可以用 absolute 定位 */
+  text-align: center;   /* 標題置中 */
+  margin-bottom: 20px;
+}
+
+.section-header h2 {
+  margin: 0;
+}
+
+.section-header .btn {
+  position: absolute;
+  right: 0;             /* 靠右 */
+  top: 50%;             /* 垂直置中 */
+  transform: translateY(-50%);
+  
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #e0ecd7;
+  color: #4c7e25;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.section-header .btn:hover {
+  background: #c9dfbb;
+}
+
+.intro-grid {
+  display: flex;
+  flex-direction: column; /* 讓地圖和特色上下排列 */
+  gap: 30px;
+}
+
+.intro-items {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;      /* 第二行：左圖右文 */
+  grid-template-rows: auto 1fr;        /* 第一行：標題，第二行：內容 */
+  grid-template-areas:
+    "title title"
+    "pic text";
+  gap: 25px;
+  border-radius: 10px;
+}
+
+.intro-items h3 {
+  grid-area: title;
+  text-align: center;
+  margin: 30px 0 8px 0;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  display: block;          /* 讓底色延伸整段 */
+  width: 100%;
+  background: #e9e9e9be;
+  padding: 6px 0;          /* 上下留白，左右不用 */
+  border-radius: 6px;
+}
+
+.intro-pics {
+  grid-area: pic;
+  min-width: 130%;
+  border-radius: 8px;
+}
+
+.intro-text {
+  grid-area: text;
+  font-size: 17px;
+  color: #444;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+/* ================================
+   首頁 按鈕樣式
+================================= */
+
+.btn {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: var(--accent-dark);
+}
+
+/* 讓按鈕並排 */
+#button-animation {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+.btn a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  color: #9a6106 !important;
+  text-decoration: none;
+  font-size: 25px;
+}
+
+/* 文字固定顯示 */
+.btn a .text {
+  position: relative;
+}
+
+/* 文字底線動畫 */
+.btn a .text::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: #9a6106 !important; 
+  transition: width 0.4s ease;
+}
+
+/* 箭頭區域 */
+.arrow-wrapper {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+/* SVG 圈圈填滿 */
+.circle-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* 箭頭絕對置中 */
+.arrow {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateX(-10px); /* 初始左移10px */
+  font-size: 25px;
+  opacity: 0;
+  transition: all 0.4s ease 0.6s; /* 延遲，等圓圈畫完 */ 
+}
+
+.btn a:hover .arrow {
+  transform: translate(-50%, -50%) translateX(0);
+  opacity: 1;
+}
+
+
+/* hover 顯示箭頭 */
+.btn a:hover .arrow {
+  transform: translate(-50%, -50%) translateX(0);
+  opacity: 1;
+}
+
+
+/* SVG 圈圈設定 */
+.circle-svg circle {
+  stroke-dasharray: 113; /* 2πr ≈ 2*3.1416*18 */
+  stroke-dashoffset: 113;
+  transition: stroke-dashoffset 0.6s linear;
+}
+
+/* hover 效果 */
+.btn a:hover .circle-svg circle {
+  stroke-dashoffset: 0; /* 畫出圈 */
+}
+
+.btn a:hover .text::after {
+  width: 100%; /* 底線展開 */
+}
+
+
+/* ================================
+   報名
+================================= */
+
+#registration.container {
+  max-width: 1100px; /* 原本是 980px，可依需求再加大 */
+  margin: 0 auto;
+  padding: 30px 0 20px;   /* 左右留白可加大一點 */
+}
+
+#registration h2 {
+  font-size: 36px;
+  font-size:clamp(1.5rem,2.8vw,2.4rem);
+  text-align: center;
+  margin: 10px 0 30px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.form-flex {
+  display: flex;
+  gap: 40px;
+  margin-top: 24px;
+  justify-content: center;
+}
+
+.beclass-form,
+.form_pretest {
+  flex: 1 1 0;
+  min-width: 280px;
+}
+
+.beclass-form iframe,
+.form_pretest iframe {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.form-reminder ul {
+  list-style-position: inside;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto 20px;
+  padding: 12px 16px;
+  background: #fff6eabe;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #593700;
+  line-height: 1.8;
+}
+
+/* ================================
+    活動成果
+================================= */
+
+#list {
+  padding: 30px 0;
+}
+
+#list h2 {
+  font-size: 36px;
+  font-size:clamp(1.5rem,2.8vw,2.4rem);
+  text-align: center;
+  margin: 10px 0 20px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+
+/* ================================
+   頁尾 Footer
+================================= */
+
+footer {
+  padding: 24px 0;
+  color: var(--muted);
+  font-size: 14px;
+  border-top: 1px solid #f0f0f0;
+  background: #fff;
+}
+
+footer .container {
+  max-width: 1300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* ================================
+   RWD 響應式設計
+================================= */
+
+/* 螢幕寬度 >= 800px 時，Hero 區塊橫向排列 */
+@media (min-width: 800px) {
+  .hero {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
