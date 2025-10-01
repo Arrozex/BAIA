@@ -1,81 +1,290 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <!--  RWD  -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>護理創新與人工智慧應用人才培育計畫</title>
-    <meta name="description" content="KMU <護理創新與人工智慧應用人才培育計畫> 課程資訊、選課網頁">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>護理創新與人工智慧應用人才培育計畫</title>
+  <meta name="description" content="KMU <護理創新與人工智慧應用人才培育計畫> 課程資訊、選課網頁">
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://apis.google.com/js/api.js"> </script>
+  <script>
+    const API_KEY = "";  <!-- 要記得改 -->
+    const CALENDAR_ID = "aforgame77@gmail.com";
+  </script>
+
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <nav>
-                <div style="font-weight: bold; font-size: 150%">
-                    <a href="home_page.html">護理創新與人工智慧應用人才培育計畫</a>
-                </div>
-                <div style="margin-left: auto; display: flex; gap: 12px; align-items: center">
-                    <a href="#home">首頁</a>
-                    <a href="#syllabus">課程資訊</a>
-                    <a href="home_page.html/course_selection">選課系統</a>
-                    <a href="#contact">聯絡我們</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="logo01.png" alt="高雄醫學大學 logo" style="height:75px; width:auto">
+      </div>
 
-    <main>
-        <section id="home" class="hero container">
-            <div>
-                <h1 style="margin:0; font-size: clamp(1.5rem, 2.8vw, 2.4rem)">課程說明</h1>
-                <p style="margin:6px 0 0">為協助護理系所碩博士班學生培養具備跨域整合能力，能將人工智慧技術應用於臨床實務與護理創新中。
-                透過系統性課程設計，學生將具備基本編程能力、並透過了解 AI 概念及應用過程開發適用於臨床照護之虛擬實境模擬訓練場景與聊天機器人，以強化醫護產業人員的溝通訓練及健康促進之 AI 應用能力。</p>
+      <div class="title" style="font-weight:bold; font-size:150%">
+        AI × 護理<br><a href="index.html">護理創新與人工智慧應用人才培育計畫</a>
+      </div>
+
+      <nav style="margin-left:auto; display:flex; gap:12px; align-items:center">
+        <a href="index.html">首頁<br>Home</a>
+        <a href="syllabus.html">課程內容<br>Curriculum</a>
+        <a href="registration.html">課程報名<br>Register</a>
+        <a href="presentation.html">課程活動<br>Activity</a>
+        <a class="btn" href="https://teams.microsoft.com/l/meetup-join/xxxx" target="_blank">課程 Teams 會議</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 最新消息 -->
+    <section id="news" class="container">
+      <h2>最新消息<br>News</h2>
+        <div class="news-segregator">
+            <div class="news-auto">
+                <h3 style="font-size: 24px; text-align: center; letter-spacing: 1px; background: #e0ecd7; border-radius: 8px; margin: 8px; padding: 4px 0">
+                    <a href="#calendar">即將到來的課程<br>Upcoming Courses</a>
+                </h3>
+                <div class="auto-container"></div>
             </div>
 
-            <div style="min-width:220px; max-width:360px">
-                <div class="card">
-                    <strong>最新消息</strong>
-                    <ul style="margin:8px 0 0; padding-left:16px; line-height:1.6">
-                        <li>2025/xx/xx - 開放選課</li>
-                        <li>2025/xx/xx - 課程資訊更新</li>
-                    </ul>
+            <div class="news-manual">
+                <h3 style="font-size: 24px; text-align: center; letter-spacing: 1px;background: #dbdbdb; border-radius: 8px; margin: 8px; padding: 4px 0">資訊更新<br>Updates</h3>
+                <div class="manual-container">
+                    <article class="news-card">
+                        <div class="meta">
+                        <div class="news-date">2025-09-29</div>
+                        </div>
+                        <h3>課程網頁更新</h3>
+                          <p><a href="https://taicatw.net/applied-artificial-intelligence-exploration-program/" style="color:#9d2727; text-decoration: none;">網站架設排版參考網頁</a></p>
+                    </article>
+
+                    <article class="news-card">
+                    <div class="meta">
+                        <div class="news-date">2025-09-27</div>
+                    </div>
+                    <h3>報名資訊更新</h3>
+                      <p>尚未開放報名</p>
+                    </article>
                 </div>
             </div>
-        </section>
-
-        <section id="syllabus" class="container" style="padding-top:20px">
-            <h2>課程資訊</h2>
-            <h3>課程地圖</h3>
-                <img src="">
-            <h3>課程一覽</h3>
-        </section>
-
-        <section id="contact" class="container" style="padding-top:20px; padding-bottom:40px">
-            <h2>聯絡我們</h2>
-            <p>高雄醫學大學 人工智慧生醫研究院<br>
-            地址：80778 高雄市三民區十全一路100號<br>
-            電話：<br>
-            Email：</p>
-        </section>
-    </main>
-    
-    <footer>
-        <div class="container">
-            <div style="display: flex; justify-content: space; space-between; align-items:center; flex-wrap:wrap">
-                <div>© 2024 高雄醫學大學 人工智慧生醫研究院</div>
         </div>
-    </footer>
+    </section>
 
-    <script>
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click',e=>{
+    <!-- 課程介紹 -->
+    <section id="home" class="container">
+      <h2>課程介紹<br>Introduction</h2>
+        <p style="margin:6px 0 0; padding-left:16px">
+          本護理創新與人工智慧應用人才培育計畫，為協助護理系所碩博士班學生培養具備跨域整合能力，能將人工智慧技術應用於臨床實務與護理創新中。<br>
+          透過系統性課程設計，學生將具備基本編程能力、並透過了解 AI 概念及應用過程開發適用於臨床照護之虛擬實境模擬訓練場景與聊天機器人，以強化醫護產業人員的溝通訓練及健康促進之 AI 應用能力。
+        </p>
+        <p style="margin:8px 0 0; padding-left:16px">
+          To help master’s and doctoral nursing students cultivate interdisciplinary integration skills, enabling them to apply artificial intelligence technologies to clinical practice and nursing innovation.<br>
+          Students will acquire basic programming skills, gain an understanding of AI concepts and applications, 
+          and develop virtual reality simulation training scenarios and chatbots applicable to clinical care. 
+        </p>
+
+      <section id="button-animation" class="container" style="margin:10px auto 50px 60px;">
+        <div class="btn" style="background:#fdfff800;">
+            <a href="syllabus.html" target="_parent">
+            <span class="text">➽ 了解更多內容</span>
+            <span class="arrow-wrapper">
+                <svg class="circle-svg" width="40" height="40" viewBox="0 0 40 40">
+                <circle cx="20" cy="20" r="18" stroke="#9a6106" stroke-width="2" fill="none"/>
+                </svg>
+                <span class="arrow">→</span>
+            </span>
+            </a>
+        </div>
+        <div class="btn" style="background:#fdfff800;">
+            <a href="registration.html" target="_parent">
+            <span class="text">➽ 立即報名課程</span>
+            <span class="arrow-wrapper">
+                <svg class="circle-svg" width="40" height="40" viewBox="0 0 40 40">
+                <circle cx="20" cy="20" r="18" stroke="#9a6106" stroke-width="2" fill="none"/>
+                </svg>
+                <span class="arrow">→</span>
+            </span>
+            </a>
+        </div>
+      </section>
+
+      <section id="collabrate">
+        <h3 style="text-align: center; margin: 30px 0 8px">開課單位<br>Collabrators</h3>
+        <div class="colab-grid">
+            <article class="colab-card">
+                <div class="meta">
+                    <h3><br>高雄醫學大學人工智慧生醫研究院<br>KMU BAIA</h3>
+                </div>
+                <div class="more-info">
+                    <a href="https://baia.kmu.edu.tw/" target="_blank">更多資訊</a>
+                </div>
+            </article>
+
+            <article class="colab-card">
+                <div class="meta">
+                    <h3><br>高雄醫學大學護理學系<br>KMU School of Nursing</h3>
+                </div>
+                <div class="more-info">
+                    <a href="https://fonursing.kmu.edu.tw/index.php/zh-TW/" target="_blank">更多資訊</a>
+                </div>
+            </article>
+
+            <article class="colab-card">
+                <div class="meta">
+                    <h3>高雄醫學大學<br>醫務管理暨醫療資訊學系碩士班<br>KMU HAMI</h3>
+                </div>
+                <div class="more-info">
+                    <a href="https://hami.kmu.edu.tw/index.php/zh-TW/" target="_blank">更多資訊</a>
+                </div>
+            </article>
+
+            <article class="colab-card">
+                <div class="meta">
+                    <h3><br>高雄醫學大學基礎科學教育中心<br>KMU Center for Fundamental Science</h3>
+                </div>
+                <div class="more-info">
+                    <a href="https://cfs.kmu.edu.tw/index.php/zh-TW/" target="_blank">更多資訊</a>
+                </div>
+            </article>
+
+            <article class="colab-card">
+                <div class="meta">
+                    <h3><br>TAICA 臺灣大專院校人工智慧學程聯盟<br>Taiwan Artificial Intelligence College Alliance</h3>
+                </div>
+                <div class="more-info" style="background: 0">
+                  <div class="buttons-split">
+                    <a href="https://academic.kmu.edu.tw/index.php/zh-tw/%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E5%AD%B8%E7%A8%8B%E8%81%AF%E7%9B%9F" target="_blank">聯盟介紹</a>
+                    <a href="https://taicatw.net/" target="_blank">官網資訊</a>
+                  </div>
+                </div>
+            </article>
+
+            <article class="colab-card">
+                <div class="meta">
+                    <h3>國立陽明交通大學<br>人工智慧技術與應用碩士學位學程<br>Artificial Intelligence Graduate Program, NYCU</h3>
+                </div>
+                <div class="more-info">
+                    <a href="https://aigp.ece.nycu.edu.tw/" target="_blank">更多資訊</a>
+                </div>
+            </article>
+        </div>
+      </section>
+
+    </section>
+
+    <section id="calendar" class="container">   
+        <h2>課程行事曆<br>Calendar</h2>
+        <div style="overflow-x:auto; margin:20px 0; text-align: center">
+            <iframe src="https://calendar.google.com/calendar/embed?src=zh-tw.taiwan%23holiday%40group.v.calendar.google.com&ctz=Asia%2FTaipei" 
+                style="border: 0" 
+                width="800" 
+                height="600" 
+                frameborder="0" 
+                scrolling="no">
+            </iframe>
+        </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container" style=" display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px">
+      <div>© 2024 高雄醫學大學 人工智慧生醫研究院 KMU Biomedical Artificial Intelligence Academy</div>
+      <div class="contact-info">
+        校址：高雄市三民區十全一路100號<br>
+        電話：07-3121101<br>
+        傳真：07-3212062<br>
+        信箱：baia@kmu.edu.tw
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    // 平滑滾動
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
         const id = a.getAttribute('href').slice(1);
         const el = document.getElementById(id);
-        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
       });
     });
+
+    // Google Calendar API 抓取課程
+    async function fetchCalendarEvents() {
+      const timeMin = (new Date()).toISOString();
+      const timeMax = (new Date(new Date().setFullYear(new Date().getFullYear() + 1))).toISOString();
+      const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events?key=${API_KEY}&timeMin=${timeMin}&timeMax=${timeMax}&showDeleted=false&singleEvents=true&orderBy=startTime`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log("API 回傳：", data.items);
+        renderEvents(data.items);
+      } catch (error) {
+        console.error("抓取日曆事件失敗:", error);
+      }
+    }
+
+    function renderEvents(events) {
+      const container = document.querySelector(".auto-container");
+      container.innerHTML = "";
+
+      if (!events || events.length === 0) {
+        container.innerHTML = "<p>目前沒有最新消息。</p>";
+        return;
+      }
+
+      events.slice(0, 3).forEach(event => {
+        const card = document.createElement("article");
+        card.className = "news-card";
+
+        const startDate = new Date(event.start.dateTime || event.start.date);
+        const dateText = `上課時間：${startDate.toLocaleDateString()} ${startDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+
+        // 報名狀態
+        const now = new Date();
+        let statusText = '';
+        let statusClass = '';
+        if (startDate - now > 24 * 60 * 60 * 1000) {
+          statusText = '報名開放';
+          statusClass = 'status-open';
+        } else {
+          statusText = '報名截止';
+          statusClass = 'status-closed';
+        }
+
+        // 標題
+        const h3 = document.createElement("h3");
+        const statusSpan = document.createElement("span");
+        statusSpan.className = `status-tag ${statusClass}`;
+        statusSpan.textContent = statusText;
+
+        h3.appendChild(statusSpan);
+        h3.appendChild(document.createTextNode(event.summary || "未命名活動"));
+        card.appendChild(h3);
+
+        // 日期
+        const dateP = document.createElement("p");
+        dateP.textContent = dateText;
+        card.appendChild(dateP);
+
+        // 地點
+        if (event.location) {
+          const loc = document.createElement("p");
+          loc.textContent = `地點：${event.location}`;
+          card.appendChild(loc);
+        }
+
+        container.appendChild(card);
+      });
+    }
+
+    fetchCalendarEvents();
   </script>
 </body>
 </html>
