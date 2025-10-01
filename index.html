@@ -7,12 +7,6 @@
   <meta name="description" content="KMU <護理創新與人工智慧應用人才培育計畫> 課程資訊、選課網頁">
   <link rel="stylesheet" href="css/styles.css">
 
-  <script src="https://apis.google.com/js/api.js"> </script>
-  <script>
-    const API_KEY = "";  <!-- 要記得改 -->
-    const CALENDAR_ID = "aforgame77@gmail.com";
-  </script>
-
 </head>
 
 <body>
@@ -216,15 +210,11 @@
 
     // Google Calendar API 抓取課程
     async function fetchCalendarEvents() {
-      const timeMin = (new Date()).toISOString();
-      const timeMax = (new Date(new Date().setFullYear(new Date().getFullYear() + 1))).toISOString();
-      const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events?key=${API_KEY}&timeMin=${timeMin}&timeMax=${timeMax}&showDeleted=false&singleEvents=true&orderBy=startTime`;
-
       try {
-        const response = await fetch(url);
+        const response = await fetch("/api/events");  // 相對路徑即可
         const data = await response.json();
-        console.log("API 回傳：", data.items);
-        renderEvents(data.items);
+        console.log("Vercel API 回傳：", data);
+        renderEvents(data);
       } catch (error) {
         console.error("抓取日曆事件失敗:", error);
       }
@@ -288,4 +278,5 @@
   </script>
 </body>
 </html>
+
 
