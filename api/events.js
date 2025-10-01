@@ -1,5 +1,5 @@
-export default async function handler(req, res) {
-  const API_KEY = process.env.GOOGLE_API_KEY;   // 從環境變數讀取，不會洩漏
+module.exports = async function handler(req, res) {
+  const API_KEY = process.env.GOOGLE_API_KEY;   // 從 Vercel 環境變數讀取
   const CALENDAR_ID = "aforgame77@gmail.com";   // 你的日曆 ID
 
   const timeMin = new Date().toISOString();
@@ -12,9 +12,8 @@ export default async function handler(req, res) {
   try {
     const response = await fetch(url);
     const data = await response.json();
-
-    res.status(200).json(data.items); // 只回傳 events
+    res.status(200).json(data.items || []);
   } catch (error) {
     res.status(500).json({ error: "抓取失敗", detail: error.message });
   }
-}
+};
