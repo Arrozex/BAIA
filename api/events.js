@@ -1,6 +1,6 @@
 module.exports = async function handler(req, res) {
   const API_KEY = process.env.GOOGLE_API_KEY;   // 從 Vercel 環境變數讀取
-  const CALENDAR_ID = "https://calendar.google.com/calendar/ical/aforgame77%40gmail.com/private-ccecd1665f46bc62c490d0609590e89e/basic.ics";   // 你的日曆 ID
+  const CALENDAR_ID = "https://calendar.google.com/calendar/ical/aforgame77%40gmail.com/public/basic.ics";   // 你的日曆 ID
 
   const timeMin = new Date().toISOString();
   const timeMax = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString();
