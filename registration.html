@@ -95,6 +95,28 @@
         }
       });
     });
+
+    document.addEventListener("DOMContentLoaded", function() {
+      // 建立右上角 QR 視窗
+      const popup = document.createElement("div");
+      popup.id = "lineQRPopup";
+      popup.innerHTML = `
+        <h4>別忘了加入課程群組</h4>
+        <img src="images/QRcode.png" alt="LINE群組QRcode">
+        <button id="closeQR">關閉</button>
+      `;
+      document.body.appendChild(popup);
+
+      // 幾秒後顯示（例如 10 秒）
+      setTimeout(() => {
+        popup.classList.add("active");
+      }, 10000);
+
+      // 關閉按鈕
+      document.getElementById("closeQR").addEventListener("click", () => {
+        popup.classList.remove("active");
+      });
+    });
   </script>
 </body>
 </html>
