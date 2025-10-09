@@ -12,6 +12,8 @@
   --radius: 10px;           /* 卡片圓角 */
   --card-bg: #ffffff;          /* 卡片背景色 */
   --max-width: 980px;       /* 主要容器寬度 */
+  --tag-yellow: #eeebbddb;
+  --tag-yellow-dark: #8f6200c1;
 }
 
 /* 所有元素都改成 border-box，讓寬高計算包含 padding 與 border */
@@ -19,13 +21,25 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;   /* 讓 body 有可計算的高度 */
+  margin: 0;      /* 清除預設外距 */
+}
+
 /* 基本文字樣式設定 */
 body {
+  display: flex;
+  flex-direction: column; /* header/main/footer 垂直排列 */
+  min-height: 100vh; 
   font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans TC', Helvetica, Arial;
   line-height: 1.5;
   margin: 0;
   color: #111;
   background: #ffffff;
+}
+
+main {
+  flex: 1;                 /* 中間內容自動撐開，讓 footer 被推到底 */
 }
 
 /* ================================
@@ -111,45 +125,6 @@ nav a:hover {
   margin: 80px 0 40px;
   letter-spacing: 1px;
   font-weight: 700;
-}
-
-/* ================================
-   Calendar 雙欄排版（不動原有 container）
-================================ */
-#calendar {
-  width: 100%;
-  max-width: none;
-  padding: 40px 0;
-}
-
-#calendar .calendar-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  max-width: 1400px;
-  margin: 0 auto;
-  gap: 30px;
-}
-
-#calendar .calendar-flex .grid {
-  flex: 0 0 48%;
-  min-width: 600px;
-  text-align: center;
-}
-
-#calendar .calendar-flex iframe {
-  width: 100%;
-  height: 600px;
-  border: 0;
-}
-
-/* 響應式調整：手機改上下排列 */
-@media (max-width: 1100px) {
-  #calendar .calendar-flex {
-    flex-direction: column;
-    align-items: center;
-  }
 }
 
 /* ================================
@@ -594,6 +569,40 @@ nav a:hover {
   line-height: 1.8;
 }
 
+.form-reminder li {
+  line-height: 2;
+}
+
+.form-reminder span {
+  color: #048787;
+  font-weight: 500;
+}
+
+#registration select {
+    display: block;
+    margin: 0 auto;
+    font-size: 16px;           /* 下拉選單文字大小 */
+    padding: 8px;              /* 內距 */
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid; 
+}
+
+.iframe-container p{
+  text-align: center;
+}
+
+.course-tag {
+  display: inline-block;
+  background-color: #dbbdeedb;   /* 預設藍色，可自行換 */
+  color: #61008fc1;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 1px 8px;
+  margin-right: 6px;
+  border-radius: 8px;
+}
+
 /* ================================
     活動成果
 ================================= */
@@ -663,16 +672,15 @@ footer .container {
 }
 #lineQRPopup button {
   margin-top: 8px;
-  background: #4caf50;
+  background: var(--accent);
   color: #fff;
   border: none;
   border-radius: 6px;
   padding: 5px 10px;
   cursor: pointer;
 }
-#lineQRPopup h4 {
-  margin: 0 0 8px 0;
-  font-size: 15px;
+#lineQRPopup h3 {
+  margin: 0 0 4px 0;
 }
 
 /* ================================
@@ -687,3 +695,22 @@ footer .container {
     align-items: flex-start;
   }
 }
+
+/* 表單頁響應式：畫面小於 768px 時改為上下排列 */
+@media (max-width: 768px) {
+  .form-flex {
+    flex-direction: column;
+    gap: 20px; /* 上下間距 */
+  }
+
+  .beclass-form,
+  .form_pretest {
+    min-width: 100%; /* 讓 iframe 佔滿寬度 */
+  }
+
+  .beclass-form iframe,
+  .form_pretest iframe {
+    width: 100%; /* 確保 iframe 也跟著拉寬 */
+  }
+}
+

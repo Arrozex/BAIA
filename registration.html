@@ -33,40 +33,20 @@
     <main>
         <section id="registration" class="container">
             <h2>課程報名<br>Register</h2>
-            <div class="form-reminder">
-                <ul>
-                    <li style="font-size: 18px; text-align: center; margin-bottom: 10px">請仔細閱讀以下注意事項後再進行報名</li>
-                    1. 首先請使用左側表單進行課程報名，本次課程<span style="color: #d32f2f">報名期限為開課前止</span>，逾期恕不受理。<br>
-                    2. 報名完成後請務必填寫右側前測問卷，作為課程前學習狀況評估之用。 前測表單填寫期限為開課前止。<br>
-                    3. 課程當天若臨時不克出席，請務必使用左側beclass表單取消報名，以利候補學員遞補。<br>
-                    4. 若未能提前取消報名且無故缺席者，<span style="color: #d32f2f">達三次者將無法參加本計畫後續課程。</span><br>
-                </ul>
-            </div>
+            <select id="courseSelect"> 
+              <option value="">請選擇課程</option> 
+              <option value="course1">即日起 | 基礎多媒體設計</option> 
+              <option value="course2">2025.11.19(三) | 基礎機器人設計</option>
+              <option value="course3">2025.11.20(四) | 未來醫院-醫療人工智慧的應用與實踐</option>  
+              <option value="course4">2025.11.22(六) | AI入門應用</option> 
+              <option value="course5">2025.11.22(六) | AI多媒體設計</option>
+              <option value="course6">2025.12.12(五) | 人工智慧與護理科學</option>
+            </select>
 
-            <div class="form-flex">
-                <div class="beclass-form">
-                    <iframe SRC="https://www.beclass.com/m/showregist.php?regist_id=MzA1MDEyZDY4ZDRmYjJjNWNmNTM6U2hvd0Zvcm0=" 
-                        FRAMEBORDER="0" 
-                        height="600" 
-                        width="440" 
-                        marginwidth="0" 
-                        marginheight="0" 
-                        name="beclassmainframe" 
-                        id="beclassmainframe">
-                        載入中...
-                    </iframe>
-                </div>
-
-                <div class="form_pretest">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfi6lukzZdD0Huicc1lL2hNG2n6IEOFTMLFI2UQDQoC6_XYqA/viewform?embedded=true" 
-                        width="640" 
-                        height="467"   
-                        frameborder="0" 
-                        marginheight="0" 
-                        marginwidth="0">
-                        載入中…</iframe>
-                </div>
+            <div class="iframe-container" id="iframeContainer"> 
+              <p>請選擇課程以查看報名表。</p> 
             </div>
+            
         </section>
     </main>
 
@@ -117,6 +97,121 @@
         popup.classList.remove("active");
       });
     });
+
+    // 課程清單
+    const courseData = { 
+      course1: { 
+        form1: "https://www.beclass.com/m/showregist.php?regist_id=MzA1MDEyZDY4ZDRmYjJjNWNmNTM6U2hvd0Zvcm0=", 
+        form2: "https://docs.google.com/forms/d/e/1FAIpQLSfi6lukzZdD0Huicc1lL2hNG2n6IEOFTMLFI2UQDQoC6_XYqA/viewform?embedded=true",
+        course_date: "即日起",
+        location: "線上自學影片",
+        teacher: "魏春旺",
+        tag: "<div class='course-tag'>專業領域</div>"
+      }, 
+      course2: { 
+        form1: "https://www.beclass.com/m/showregist.php?regist_id=MzA1MDE4MTY4ZTc2MGNkNTVkODQ6U2hvd0Zvcm0=", 
+        form2: "https://docs.google.com/forms/d/e/1FAIpQLSfi6lukzZdD0Huicc1lL2hNG2n6IEOFTMLFI2UQDQoC6_XYqA/viewform?embedded=true",
+        course_date: "2025.11.19(三) 17:00-19:00",
+        location: "線上(online)",
+        teacher: "魏春旺",
+        tag: "<div class='course-tag' style='background-color: var(--tag-yellow); color: var(--tag-yellow-dark)'>AI進階</div>"
+      }, 
+      course3: { 
+        form1: "https://www.beclass.com/m/showregist.php?regist_id=MzA1MDE4MTY4ZTc2NmExMDMwYjc6U2hvd0Zvcm0=", 
+        form2: "https://docs.google.com/forms/d/e/1FAIpQLSfi6lukzZdD0Huicc1lL2hNG2n6IEOFTMLFI2UQDQoC6_XYqA/viewform?embedded=true",
+        course_date: "2025.11.20(四)12:10-13:10",
+        location: "高雄醫學大學國研大樓(IR630)",
+        teacher: "國立陽明交通大學 數位醫學暨智慧醫療推動中心 楊智傑 主任",
+        tag: "<div class='course-tag'>專業領域</div>"
+      },
+      course4: { 
+        form1: "https://www.beclass.com/m/showregist.php?regist_id=MzA1MDE4MTY4ZTc2NDhiMTRiODg6U2hvd0Zvcm0=", 
+        form2: "https://docs.google.com/forms/d/e/1FAIpQLSfi6lukzZdD0Huicc1lL2hNG2n6IEOFTMLFI2UQDQoC6_XYqA/viewform?embedded=true",
+        course_date: "2025.11.22(六) 09:00-10:50",
+        location: "高雄醫學大學國研大樓(IR630)",
+        teacher: "簡良諭",
+        tag: "<div class='course-tag' style='background-color: var(--tag-yellow); color: var(--tag-yellow-dark)'>AI進階</div>"
+      },
+      course5: { 
+        form1: "https://www.beclass.com/m/showregist.php?regist_id=MzA1MDE4MTY4ZTc2NWQyMzAyNWM6U2hvd0Zvcm0=", 
+        form2: "https://docs.google.com/forms/d/e/1FAIpQLSfi6lukzZdD0Huicc1lL2hNG2n6IEOFTMLFI2UQDQoC6_XYqA/viewform?embedded=true",
+        course_date: "2025.11.22(六) 11:00-14:50 (2hr+午休1hr)",
+        location: "高雄醫學大學國研大樓(IR630)",
+        teacher: "簡良諭",
+        tag: "<div class='course-tag' style='background-color: var(--tag-yellow); color: var(--tag-yellow-dark)'>AI進階</div>"
+      },
+      course6: { 
+        form1: "https://www.beclass.com/m/showregist.php?regist_id=MzA1MDE4MTY4ZTc2NzlhYzllYzI6U2hvd0Zvcm0=", 
+        form2: "https://docs.google.com/forms/d/e/1FAIpQLSfi6lukzZdD0Huicc1lL2hNG2n6IEOFTMLFI2UQDQoC6_XYqA/viewform?embedded=true",
+        course_date: "2025.12.12(五) 13:10-16:00",
+        location: "高雄醫學大學第一教學大樓(N429)",
+        teacher: "簡良諭 / 蔡曉婷",
+        tag: "<div class='course-tag'>專業領域</div>"
+      },
+    };
+
+    const select = document.getElementById("courseSelect");
+    const iframeContainer = document.getElementById("iframeContainer");
+
+    function loadCourse(courseKey) {
+      const course = courseData[courseKey];  // 從資料表中找到對應課程
+      if (course) {
+        iframeContainer.innerHTML = `
+          <div class="form-reminder">
+            <ul>
+              <li style="font-size: 16px; text-align: center; list-style-type: none">${course.tag}上課日期：<span>${course.course_date}</span>、上課地點：<span>${course.location}</span><br>
+                開課老師：<span>${course.teacher}</span></li>
+                1. 首先請使用左側表單進行課程報名，本課程<span style="color: #d32f2f">報名期限為開課前一天止</span>，逾期恕不受理。<br>
+                2. 報名完成後請填寫右側前測問卷，作為課程前學習狀況評估之用。 <span style="color: #d32f2f">請每堂課都填寫一份，</span>填寫期限為上課前止。<br>
+                3. 課程當天若臨時不克出席，請務必使用左側beclass表單取消報名，以利候補學員遞補。<br>
+                4. 若未能提前取消報名且無故缺席者，<span style="color: #d32f2f">達三次者將無法參加本計畫後續課程。</span><br>
+              </ul>
+          </div>
+
+          <div class="form-flex">
+            <div class="beclass-form">
+              <iframe src="${course.form1}"FRAMEBORDER="0" 
+                height="600" 
+                width="440" 
+                marginwidth="0" 
+                marginheight="0" 
+                name="beclassmainframe" 
+                id="beclassmainframe">
+                載入中...>
+              </iframe>
+            </div>
+
+            <div class="form_pretest">
+              <iframe src="${course.form2}"
+                width="640" 
+                height="600" 
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0">
+                載入中...>
+              </iframe>
+            </div>
+          </div>
+        `;
+        // 更新下拉選單顯示目前選擇的課程
+        select.value = courseKey;
+      } else {
+        iframeContainer.innerHTML = "<p>請選擇課程以查看報名表。</p>";
+      }
+    }
+
+    select.addEventListener("change", () => {
+      const selected = select.value;
+      // 更新網址但不重新整理
+      history.replaceState(null, "", "?course=" + selected);
+      loadCourse(selected);
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const courseFromURL = params.get("course"); // 取得 URL 中的 course 值
+    if (courseFromURL) {
+      loadCourse(courseFromURL);
+    }
   </script>
 </body>
 </html>
