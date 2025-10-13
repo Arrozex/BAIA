@@ -248,6 +248,7 @@
         statusSpan.textContent = statusText;
 
         h3.appendChild(statusSpan);
+        h3.appendChild(document.createElement("br"));
         h3.appendChild(document.createTextNode(event.summary || "未命名活動"));
         card.appendChild(h3);
 
@@ -271,6 +272,7 @@
   </script>
 </body>
 </html>
+
 
 
 
