@@ -178,7 +178,7 @@ nav a:hover {
 }
 
 .news-card h3 {
-  display: flex;
+  display: block;
   align-items: center;
   gap: 8px; /* 標籤和標題間距 */
   font-size: 1.2rem;
@@ -186,6 +186,7 @@ nav a:hover {
 
 .status-tag {
   display: inline-block;
+  margin-bottom: 4px; /* 標籤和標題的間距 */
   padding: 2px 6px;
   font-size: 0.75rem;
   font-weight: 700;
