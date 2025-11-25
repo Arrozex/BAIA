@@ -199,6 +199,23 @@
     </div>
   </footer>
 
+  <div id="chatbot-container">
+    <div id="chat-window">
+        <div class="chat-header">
+            <span>🤖AI FAQ helper</span>
+            <button onclick="toggleChat()" class="close-btn">×</button>
+        </div>
+        <iframe 
+            src="https://yitxx-baia-faqbot.hf.space/?__theme=light" 
+            frameborder="0"
+        ></iframe>
+    </div>
+
+    <button id="chat-toggle-btn" onclick="toggleChat()">
+        ☁
+    </button>
+  </div>
+
   <!-- Script -->
   <script>
     // 平滑滾動
@@ -281,9 +298,23 @@
     }
 
     fetchCalendarEvents();
+
+    function toggleChat() {
+        const chatWindow = document.getElementById('chat-window');
+        const btn = document.getElementById('chat-toggle-btn');
+        
+        if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
+            chatWindow.style.display = 'flex';
+            btn.innerHTML = '✕'; // 變成關閉圖示
+        } else {
+            chatWindow.style.display = 'none';
+            btn.innerHTML = '☁'; // 變回對話圖示
+        }
+    }
   </script>
 </body>
 </html>
+
 
 
 
