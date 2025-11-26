@@ -13,20 +13,19 @@
   <header>
     <div class="container">
       <div class="logo">
-        <img src="images/logo01.png" alt="高雄醫學大學 logo" style="height:75px; width:auto">
+        <img src="images/logo01.png" alt="高雄醫學大學 logo">
       </div>
 
-      <div class="title" style="font-weight:bold; font-size:150%">
+      <div class="title">
         <a href="https://proj.moe.edu.tw/smartrainforest/Default.aspx">教育部智慧雨林補助</a><br>
-        <a href="index.html"><span style="color:var(--accent-light);">AI × 護理</span> 護理創新與人工智慧應用人才培育計畫</a>
+        <a href="index.html"><span>AI × 護理</span> 護理創新與人工智慧應用人才培育計畫</a>
       </div>
 
-      <nav style="margin-left:auto; display:flex; gap:12px; align-items:center">
+      <nav>
         <a href="index.html">首頁<br>Home</a>
         <a href="syllabus.html">課程內容<br>Curriculum</a>
         <a href="registration.html">課程報名<br>Register</a>
         <a href="presentation.html">課程活動<br>Activity</a>
-        <a class="btn" href="https://teams.microsoft.com/l/meetup-join/xxxx" target="_blank">課程 Teams 會議</a>
       </nav>
     </div>
   </header>
@@ -200,6 +199,10 @@
   </footer>
 
   <div id="chatbot-container">
+    <div class="chat-notice">
+      <span>如果有任何問題都可以問我喔</span>
+    </div>
+
     <div id="chat-window">
         <div class="chat-header">
             <span>🤖AI FAQ helper</span>
@@ -212,7 +215,7 @@
     </div>
 
     <button id="chat-toggle-btn" onclick="toggleChat()">
-        ☁
+        ☁️
     </button>
   </div>
 
@@ -302,37 +305,23 @@
     function toggleChat() {
         const chatWindow = document.getElementById('chat-window');
         const btn = document.getElementById('chat-toggle-btn');
+        const notice = document.querySelector('.chat-notice');
         
         if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
             chatWindow.style.display = 'flex';
             btn.innerHTML = '✕'; // 變成關閉圖示
+        
+          if (notice) {
+            notice.style.display = 'none';
+          }
+        
         } else {
             chatWindow.style.display = 'none';
-            btn.innerHTML = '☁'; // 變回對話圖示
+            btn.innerHTML = '☁️'; // 變回對話圖示
+
+            if (notice) notice.style.display = 'block';
         }
     }
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
