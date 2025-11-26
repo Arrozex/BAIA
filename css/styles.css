@@ -1,22 +1,25 @@
 /* ================================
    全站通用設定
 ================================= */
-
-/* 定義網站的共用顏色變數，方便日後維護 */
 :root {
   --accent: #134e19;        /* 主色（深藍色，用於按鈕、連結等） */
   --accent-dark: #134e19;   
-  --accent-light: #2da19f;   
+  --accent-light: #2da19f; 
+  --primary-color: #333; 
+  --text-gray: #666; 
   --muted: #666;            /* 輔助文字顏色（灰色） */
-  --gap: 20px;              /* 元素間距 */
-  --radius: 10px;           /* 卡片圓角 */
   --card-bg: #ffffff;          /* 卡片背景色 */
-  --max-width: 980px;       /* 主要容器寬度 */
   --tag-yellow: #eeebbddb;
   --tag-yellow-dark: #8f6200c1;
+
+  --gap: 20px;              /* 元素間距 */
+  --border-radius: 8px;
+  --radius: 10px;           /* 卡片圓角 */
+  --max-width: 980px;       /* 主要容器寬度 */
+  --container-width: 1200px;
+  --max-width: 1200px;
 }
 
-/* 所有元素都改成 border-box，讓寬高計算包含 padding 與 border */
 * {
   box-sizing: border-box;
 }
@@ -26,20 +29,34 @@ html, body {
   margin: 0;      /* 清除預設外距 */
 }
 
-/* 基本文字樣式設定 */
 body {
   display: flex;
   flex-direction: column; /* header/main/footer 垂直排列 */
   min-height: 100vh; 
   font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans TC', Helvetica, Arial;
-  line-height: 1.5;
-  margin: 0;
-  color: #111;
-  background: #ffffff;
+  line-height: 1.6;
+  color: var(--primary-color);
+  background: white;
 }
 
 main {
   flex: 1;                 /* 中間內容自動撐開，讓 footer 被推到底 */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--accent-light);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ================================
@@ -50,6 +67,19 @@ main {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 20px;
+  width: 100%;
+}
+
+section {
+  padding: 40px 0;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 
 /* ================================
@@ -59,7 +89,11 @@ main {
 header {
   background: linear-gradient(90deg, #fafafa, rgb(236, 236, 236));
   border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 header .container {
@@ -70,12 +104,32 @@ header .container {
   gap: 12px;
 }
 
+header .logo img {
+  height: 75px;
+  width: auto;
+}
+
+header .title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
 header .container .title,
 header .container .title a {
     color: var(--accent);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.2s;
+}
+
+header .title a:first-child {
+  font-size: 0.9rem;
+  color: var(--text-gray);
+}
+
+header .title span {
+  color: var(--accent-light);
 }
 
 /* 導航列 */
@@ -87,14 +141,14 @@ nav {
 }
 
 nav a {
-  color: var(--accent);
-  text-decoration: none;
+  font-size: 0.95rem;
   font-weight: 600;
+  color: var(--accent);
   transition: color 0.2s;
 }
 
 nav a:hover {
-  color: var(--accent-dark);
+  color: #2da19f;
 }
 
 /* ================================
@@ -105,26 +159,12 @@ nav a:hover {
 }
 
 #home h2 {
-  font-size: 36px;
-  font-size:clamp(1.5rem,2.8vw,2.4rem);
-  text-align: center;
   margin: 10px 0 40px;
-  letter-spacing: 1px;
-  font-weight: 700;
 }
 
 #home p {
   font-size: 18px;
   line-height: 1.8;
-}
-
-#calendar h2 {
-  font-size: 36px;
-  font-size:clamp(1.5rem,2.8vw,2.4rem);
-  text-align: center;
-  margin: 80px 0 40px;
-  letter-spacing: 1px;
-  font-weight: 700;
 }
 
 /* ================================
@@ -135,17 +175,15 @@ nav a:hover {
 }
 
 #news h2 {
-  font-size: clamp(1.5rem, 2.8vw, 2.4rem);
-  text-align: center;
+  font-size: 2rem;
   margin: 10px 0 40px;
-  letter-spacing: 1px;
-  font-weight: 700;
 }
 
 .news-segregator {
   display: flex;
   gap: 32px;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .news-auto,
@@ -157,11 +195,20 @@ nav a:hover {
 .manual-container,
 .auto-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--gap);
   width: 95%;
   max-width: var(--max-width);
   margin: 0 auto;
+}
+
+.news-auto h3,
+.news-manual h3 {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  margin: 8px 0 20px;
+  padding: 8px 0;
 }
 
 .news-card {
@@ -177,38 +224,11 @@ nav a:hover {
   transition: transform 0.2s ease;
 }
 
-.news-card h3 {
-  display: block;
-  align-items: center;
-  gap: 8px; /* 標籤和標題間距 */
-  font-size: 1.2rem;
-}
-
-.status-tag {
-  display: inline-block;
-  margin-bottom: 4px; /* 標籤和標題的間距 */
-  padding: 4px 6px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  border-radius: 4px;
-  color: #fff;
-}
-
-.status-open {
-  background-color: #42b55d43; /* 綠色 = 開放報名 */
-    color: #158c31;              /* 深綠色字 */
-}
-
-.status-closed {
-  background-color: #df566457; /* 紅色 = 報名截止 */
-    color: #9d1422;              /* 深紅色字 */
-}
-
 .news-card:hover {
   transform: translateY(-3px);
 }
 
-.meta {
+.news-card .meta {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -220,11 +240,12 @@ nav a:hover {
   color: var(--muted);
 }
 
-.manual-container h3,
-.auto-container h3 {
-  margin: 3px 0 12px;
+.news-card h3 {
+  display: block;
+  align-items: center;
+  gap: 8px;
   font-size: 1.2rem;
-  margin-bottom: 8px;
+  margin: 3px 0 12px;
   line-height: 1.18;
 }
 
@@ -244,6 +265,25 @@ nav a:hover {
   line-height: 1.5;
 }
 
+.status-tag {
+  display: inline-block;
+  margin-bottom: 4px; /* 標籤和標題的間距 */
+  padding: 4px 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.status-open {
+  background-color: #42b55d43; /* 綠色 = 開放報名 */
+    color: #158c31;             
+}
+
+.status-closed {
+  background-color: #df566457; /* 紅色 = 報名截止 */
+    color: #9d1422;              
+}
 /* ================================
    首頁 聯合師資
 ================================= */
@@ -260,15 +300,20 @@ nav a:hover {
 .colab-card {
   background: var(--card-bg);
   border-radius: var(--radius);
-  padding: 14px 16px;      /* 減少空白 */
+  padding: 14px 16px;      
   box-shadow: 0 8px 18px rgba(106, 78, 40, 0.08);
   border: 1px solid rgba(18, 59, 102, 0.093);
-  min-height: 80px;        /* 可再依內容調整 */
+  min-height: 80px;      
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 8px;                /* 讓內容間距更緊湊 */
+  gap: 8px;               
+}
+
+.colab-card:hover {
+  transform: translateY(-3px);
+  transition: all 0.2s ease;
 }
 
 .colab-card h3 {
@@ -281,7 +326,20 @@ nav a:hover {
 .more-info {
     display: flex;                   /* 讓內部按鈕水平排列 */
     justify-content: center;
-    width: 100%;              /* 讓它撐滿卡片 */
+    width: 100%;             
+}
+
+.more-info a {
+  display: block;          /* 讓底色延伸整段 */
+  width: 100%;
+  background: #e0ecd7;
+  padding: 6px 0;          /* 上下留白，左右不用 */
+  border-radius: 6px;
+  font-size: 15px;
+  text-align: center;
+  font-weight: 600;
+  color: #4c7e25;
+  text-decoration: none;
 }
 
 .buttons-split {
@@ -300,45 +358,22 @@ nav a:hover {
   border-radius: 6px;
 }
 
-.colab-card:hover {
-  transform: translateY(-3px);
-  transition: all 0.2s ease;
-}
-
-.more-info a {
-  display: block;          /* 讓底色延伸整段 */
-  width: 100%;
-  background: #e0ecd7;
-  padding: 6px 0;          /* 上下留白，左右不用 */
-  border-radius: 6px;
-  font-size: 15px;
-  text-align: center;
-  font-weight: 600;
-  color: #4c7e25;
-  text-decoration: none;
-}
-
 /* ================================
     課程介紹排版
 ================================= */
 #syllabus.container {
-  max-width: 1200px; /* 原本是 980px，可依需求再加大 */
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 30px 0 20px;   /* 左右留白可加大一點 */
+  padding: 30px 0 20px;   
 }
 
 #syllabus h2 {
-  font-size: 36px;
-  font-size:clamp(1.5rem,2.8vw,2.4rem);
-  text-align: center;
   margin: 10px 0 30px;
-  letter-spacing: 1px;
-  font-weight: 700;
 }
 
 .section-header {
   position: relative;   /* 讓子元素可以用 absolute 定位 */
-  text-align: center;   /* 標題置中 */
+  text-align: center;   
   margin-bottom: 20px;
 }
 
@@ -346,12 +381,11 @@ nav a:hover {
   margin: 0;
 }
 
-.section-header .btn {
+.section-header .btn{
   position: absolute;
-  right: 0;             /* 靠右 */
-  top: 50%;             /* 垂直置中 */
+  right: 0;            
+  top: 50%;             
   transform: translateY(-50%);
-  
   font-size: 14px;
   padding: 6px 12px;
   border-radius: 6px;
@@ -363,12 +397,13 @@ nav a:hover {
 }
 
 .section-header .btn:hover {
-  background: #c9dfbb;
+  background: #dfd2bb;
+  color: #7e5725;
 }
 
 .intro-grid {
   display: flex;
-  flex-direction: column; /* 讓地圖和特色上下排列 */
+  flex-direction: column;
   gap: 30px;
 }
 
@@ -403,8 +438,15 @@ nav a:hover {
   border-radius: 8px;
 }
 
+.intro-pics img {
+  display: inline-block;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
 .intro-text {
   grid-area: text;
+  max-width: 800px;
+  margin: 0 auto;
   font-size: 17px;
   color: #444;
   line-height: 1.8;
@@ -414,27 +456,17 @@ nav a:hover {
 /* ================================
    首頁 按鈕樣式
 ================================= */
-
-.btn {
-  display: inline-block;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: var(--accent);
-  color: white;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-
-.btn:hover {
-  background: var(--accent-dark);
-}
-
-/* 讓按鈕並排 */
 #button-animation {
   display: flex;
   justify-content: center;
   gap: 50px;
   margin-top: 20px;
+}
+
+#button-animation .btn {
+  position: relative;
+  padding: 10px 20px;
+  background: transparent;
 }
 
 .btn a {
@@ -464,6 +496,10 @@ nav a:hover {
   transition: width 0.4s ease;
 }
 
+.btn a:hover .text::after {
+  width: 100%;
+}
+
 /* 箭頭區域 */
 .arrow-wrapper {
   position: relative;
@@ -471,50 +507,34 @@ nav a:hover {
   height: 40px;
 }
 
-/* SVG 圈圈填滿 */
 .circle-svg {
   width: 100%;
   height: 100%;
 }
 
-/* 箭頭絕對置中 */
-.arrow {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%) translateX(-10px); /* 初始左移10px */
-  font-size: 25px;
-  opacity: 0;
-  transition: all 0.4s ease 0.6s; /* 延遲，等圓圈畫完 */ 
-}
-
-.btn a:hover .arrow {
-  transform: translate(-50%, -50%) translateX(0);
-  opacity: 1;
-}
-
-
-/* hover 顯示箭頭 */
-.btn a:hover .arrow {
-  transform: translate(-50%, -50%) translateX(0);
-  opacity: 1;
-}
-
-
-/* SVG 圈圈設定 */
 .circle-svg circle {
-  stroke-dasharray: 113; /* 2πr ≈ 2*3.1416*18 */
+  stroke-dasharray: 113;
   stroke-dashoffset: 113;
   transition: stroke-dashoffset 0.6s linear;
 }
 
-/* hover 效果 */
 .btn a:hover .circle-svg circle {
-  stroke-dashoffset: 0; /* 畫出圈 */
+  stroke-dashoffset: 0;
 }
 
-.btn a:hover .text::after {
-  width: 100%; /* 底線展開 */
+.arrow {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateX(-10px);
+  font-size: 25px;
+  opacity: 0;
+  transition: all 0.4s ease 0.6s;
+}
+
+.btn a:hover .arrow {
+  transform: translate(-50%, -50%) translateX(0);
+  opacity: 1;
 }
 
 
@@ -523,38 +543,35 @@ nav a:hover {
 ================================= */
 
 #registration.container {
-  max-width: 1100px; /* 原本是 980px，可依需求再加大 */
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 30px 0 20px;   /* 左右留白可加大一點 */
+  padding: 30px 0 20px;  
 }
 
 #registration h2 {
-  font-size: 36px;
-  font-size:clamp(1.5rem,2.8vw,2.4rem);
+  margin: 10px 0 20px;
+}
+
+#registration h3 {
+  color: #d32f2f;
   text-align: center;
-  margin: 10px 0 30px;
-  letter-spacing: 1px;
-  font-weight: 700;
 }
 
-.form-flex {
-  display: flex;
-  gap: 40px;
-  margin-top: 24px;
-  justify-content: center;
+#registration select {
+    display: block;
+    margin: 0 auto;
+    font-size: 16px;           /* 下拉選單文字大小 */
+    padding: 8px;              /* 內距 */
+    margin-bottom: 20px;
+    border: 1px solid; 
+    border-radius: 4px;
 }
 
-.beclass-form,
-.form_pretest {
-  flex: 1 1 0;
-  min-width: 280px;
-}
-
-.beclass-form iframe,
-.form_pretest iframe {
-  width: 100%;
+.form-reminder {
+  background: #fff6eabe;
+  padding: 10px;
   border-radius: 8px;
-  border: 1px solid #eee;
+  margin-bottom: 15px;
 }
 
 .form-reminder ul {
@@ -579,16 +596,6 @@ nav a:hover {
   font-weight: 500;
 }
 
-#registration select {
-    display: block;
-    margin: 0 auto;
-    font-size: 16px;           /* 下拉選單文字大小 */
-    padding: 8px;              /* 內距 */
-    margin-bottom: 20px;
-    border-radius: 4px;
-    border: 1px solid; 
-}
-
 .iframe-container p{
   text-align: center;
 }
@@ -604,29 +611,50 @@ nav a:hover {
   border-radius: 8px;
 }
 
+.form-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 24px;
+  justify-content: center;
+}
+
+.beclass-form,
+.form_pretest {
+  flex: 1 1 0;
+  min-width: 280px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.beclass-form iframe,
+.form_pretest iframe {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
 /* ================================
     活動成果
 ================================= */
-
 #list {
   padding: 30px 0;
 }
 
 #list h2 {
-  font-size: 36px;
-  font-size:clamp(1.5rem,2.8vw,2.4rem);
-  text-align: center;
   margin: 10px 0 20px;
-  letter-spacing: 1px;
-  font-weight: 700;
 }
 
 /* 圖片庫容器 */
 .gallery-container {
   display: flex;
-  gap: 20px;
-  margin: 30px 0;
-  min-height: 450px; /* 確保容器有最小高度 */
+  gap: 5px;
+  min-height: 500px;
+  background: var(--white);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  margin: 25px 0;
 }
 
 /* 側邊欄 */
@@ -635,26 +663,27 @@ nav a:hover {
   flex-direction: column;
   gap: 10px;
   min-width: 120px;
-  width: 200px; /* 固定寬度 */
-  flex-shrink: 0; /* 防止縮小 */
+  width: 200px;
+  flex-shrink: 0;
+  padding-right: 5px;
 }
 
 /* 活動項目 */
 .event-item {
-  background-color: #666;
+  background-color: var(--accent-dark);
   color: white;
   padding: 12px 20px;
   border-radius: 8px;
   cursor: pointer;
   text-align: center;
+  margin-bottom: 5px;
   transition: background-color 0.3s;
 }
 
 .event-item:hover {
-  background-color: #444;
+  background-color: var(--accent-light);
+  color: white;
 }
-
-
 
 /* 輪播區域 */
 .carousel {
@@ -665,7 +694,7 @@ nav a:hover {
   gap: 15px;
   flex: 1;
   min-height: 400px; /* 維持最小高度 */
-  width: 100%; /* 佔據剩餘空間 */
+  width: 100%;
 }
 
 /* 圖片容器 */
@@ -679,29 +708,13 @@ nav a:hover {
 
 /* 圖片外框 */
 .image-container {
+  flex: 1;
+  text-align: center;
   position: relative;
   display: inline-block;
 }
 
-/* 箭頭按鈕 */
-.carousel button {
-  background-color: #666;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  font-size: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  flex-shrink: 0; /* 防止按鈕被壓縮 */
-}
-
-.carousel button:hover {
-  background-color: #444;
-}
-
-/* 圖片 */
+.image-container img,
 #carousel-image {
   max-width: 600px;
   max-height: 400px;
@@ -710,8 +723,9 @@ nav a:hover {
   width: auto;
   height: auto;
   object-fit: contain;
+  margin: 0 auto;
   border-radius: 8px;
-  background-color: #f0f0f0; /* 沒圖片時顯示淺灰背景 */
+  background-color: #f0f0f0;
   display: block;
 }
 
@@ -729,12 +743,31 @@ nav a:hover {
   backdrop-filter: blur(4px);
 }
 
-/* 圖片計數 - 顯示在圖片下方 */
+/* 箭頭按鈕 */
+.carousel button {
+  background-color: transparent;
+  color: var(--accent-dark);
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color 0.3s;
+  flex-shrink: 0; /* 防止按鈕被壓縮 */
+}
+
+.carousel button:hover {
+  background-color: #59e1de;
+}
+
+/* 圖片計數*/
 .image-counter {
   text-align: center;
-  color: #666;
-  font-size: 14px;
-  margin-top: 8px;
+  font-weight: bold;
+  color: #636363;
+  font-size: 18px;
 }
 
 /* ================================
@@ -742,20 +775,26 @@ nav a:hover {
 ================================= */
 
 footer {
+  background-color: #fff;
   padding: 24px 0;
   color: var(--muted);
   font-size: 14px;
   border-top: 1px solid #f0f0f0;
-  background: #fff;
+  margin-top: 60px;
+  font-size: 14px;
 }
 
 footer .container {
-  max-width: 1300px;
+  max-width: 80%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 16px;
+}
+
+.contact-info {
+  line-height: 1.8;
 }
 
 /* ================================
@@ -764,152 +803,439 @@ footer .container {
 #lineQRPopup {
   position: fixed;
   top: 20px;
-  right: 20px;
-  background: #fff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  border-radius: 10px;
-  padding: 15px;
-  text-align: center;
+  right: -300px;
   width: 250px;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  text-align: center;
+  transition: right 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+  z-index: 3000;
   opacity: 0;
   pointer-events: none;
   transform: translateY(-20px);
-  transition: all 0.5s ease;
-  z-index: 9999;
 }
 #lineQRPopup.active {
+  right: 20px;
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
 }
-#lineQRPopup img {
-  width: 100%;
-  border-radius: 8px;
-}
-#lineQRPopup button {
-  margin-top: 8px;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
+
 #lineQRPopup h3 {
   margin: 0 0 4px 0;
 }
 
-/* 聊天機器人容器定位 */
-    #chatbot-container {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 9999;
-        font-family: sans-serif;
-    }
+#lineQRPopup img {
+  width: 100%;
+  margin: 10px auto;
+  border-radius: 8px;
+}
+#lineQRPopup button {
+  background: var(--accent-light);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 18px;
+  cursor: pointer;
+  margin-top: 8px;
+}
 
-    /* 懸浮按鈕樣式 */
-    #chat-toggle-btn {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background-color: #134e19; /* 你可以改這個顏色 */
-        color: white;
-        border: none;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        cursor: pointer;
-        font-size: 24px;
-        transition: transform 0.2s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+/* =========================================
+   問答機器人
+========================================= */
+#chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* 點開也會固定在右下角 */
+  font-family: sans-serif;
+}
 
-    #chat-toggle-btn:hover {
-        transform: scale(1.1);
-    }
+/* 提醒氣泡 */
+.chat-notice {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  background-color: white;
+  color: #333;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  z-index: 9998;
+  transition: opacity 0.3s, transform 0.3s;
+  animation: floatIn 0.5s ease-out, fadeOut 0.5s ease-in 6s forwards;
+  pointer-events: none; /* 消失後不阻擋點擊 */
+}
 
-    /* 聊天視窗樣式 */
-    #chat-window {
-        display: none; /* 預設隱藏 */
-        width: 380px;  /* 寬度 */
-        height: 600px; /* 高度 */
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        overflow: hidden;
-        margin-bottom: 16px;
-        border: 1px solid #e5e7eb;
-        flex-direction: column;
-    }
+.chat-notice::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; /* 往下突出 */
+    right: 20px;  /* 箭頭的左右位置，對齊下方按鈕中心 */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 8px 0 8px; /* 畫出倒三角形 */
+    border-color: white transparent transparent transparent;
+}
 
-    /* 視窗標題列 */
-    .chat-header {
-        background-color: #134e19;
-        color: white;
-        padding: 12px 16px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-weight: bold;
+@keyframes floatIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
     }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 
 
-    .close-btn {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-        padding: 0;
-        line-height: 1;
-    }
+@keyframes fadeOut {
+  from { opacity: 1; visibility: visible; }
+  to { opacity: 0; visibility: hidden; }
+}
 
-    /* Iframe 填滿 */
-    #chat-window iframe {
-        width: 100%;
-        height: 100%;
-        display: block;
-    }
-    
-    /* 手機版響應式調整 */
-    @media (max-width: 480px) {
-        #chat-window {
-            width: 90vw;
-            height: 80vh;
-            position: fixed;
-            bottom: 90px;
-            right: 5vw;
-        }
-    }
+/* 對話按鈕 */
+#chat-toggle-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#chat-toggle-btn:hover {
+  transform: scale(1.1);
+}
+
+/* 對話窗 */
+#chat-window {
+  display: none;
+  flex-direction: column;
+  width: 380px;
+  height: 600px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  margin-bottom: 16px;
+  border: 1px solid #e5e7eb;
+}
+
+.chat-header {
+  background-color: var(--accent);
+  color: white;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+#chat-window iframe {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}  
 
 /* ================================
    RWD 響應式設計
 ================================= */
-
-/* 螢幕寬度 >= 800px 時，Hero 區塊橫向排列 */
-@media (min-width: 800px) {
-  .hero {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-}
-
-/* 表單頁響應式：畫面小於 768px 時改為上下排列 */
+/* ================================
+   RWD 響應式設計 (手機版優化)
+================================= */
 @media (max-width: 768px) {
+  /* 1. 字體大小與間距調整 */
+  html {
+    font-size: 16px; /* 確保手機上基準字體夠大 */
+  }
+  
+  h2 {
+    font-size: 1.8rem; /* 標題稍微縮小以免換行過多 */
+    margin-bottom: 20px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  /* 2. Header 優化：隱藏圖片，只留文字 */
+  header .container {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center; /* 置中對齊 */
+  }
+
+  header .logo img {
+    display: none; /* 手機版不顯示 Logo 圖片 */
+  }
+
+  header .title {
+    text-align: center; /* 標題文字置中 */
+    font-size: 1.3rem;
+  }
+
+  nav {
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 0;
+    gap: 12px;
+    width: 100%;
+    padding-bottom: 10px; /* 增加底部空間 */
+  }
+  
+  nav a {
+    font-size: 1rem; /* 導航文字加大 */
+    padding: 5px;
+  }
+
+  /* 3. 圖片與 Iframe RWD */
+  img, iframe {
+    max-width: 100% !important;
+    height: auto;
+  }
+
+  /* 4. 最新消息 (Upcoming Courses) 滿版設定 */
+  .news-segregator {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .news-auto,
+  .news-manual {
+    width: 100%;      /* 強制佔滿寬度 */
+    min-width: 100%;
+    flex: none;       /* 取消 flex 收縮 */
+  }
+
+  /* 5. 合作單位卡片 */
+  .colab-grid {
+    grid-template-columns: 1fr; /* 單欄排列 */
+  }
+  
+  /* 6. 按鈕區域優化 */
+  #button-animation {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin-left: 0 !important; /* 修正原本的左邊距 */
+  }
+
+  .btn {
+    width: 100%; /* 按鈕容器滿寬 */
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn a {
+    justify-content: center; /* 讓文字與箭頭在按鈕內置中 */
+    width: 100%;
+  }
+
+  /* 7. 行事曆高度維持 */
+  #calendar iframe {
+    min-height: 500px; /* 強制設定最小高度，避免變太扁 */
+  }
+
+  /* 8. 課程介紹排版 */
+  .intro-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .intro-pics, .intro-text {
+    min-width: auto !important;
+    width: 100%;
+  }
+
+  .intro-pics img {
+    /* 把圖片縮小一點，不要滿版 100%，留點呼吸空間 */
+    max-width: 90% !important; 
+    height: auto;
+    border-radius: 8px;
+    
+    /* 確保圖片本身也置中 */
+    display: block; 
+    margin: 0 auto;
+  }
+
+  .intro-text {
+    width: 95%; /* 文字也稍微內縮一點，不要貼邊 */
+    padding: 0 10px;
+    text-align: justify; /* 文字左右對齊，閱讀較整齊 */
+  }
+  
+  .intro-text {
+    padding: 0;
+    text-align: left; /* 手機版靠左閱讀較舒適 */
+  }
+
+  /* 9. 報名頁表單 */
   .form-flex {
     flex-direction: column;
-    gap: 20px; /* 上下間距 */
   }
-
-  .beclass-form,
+  
+  .beclass-form, 
   .form_pretest {
-    min-width: 100%; /* 讓 iframe 佔滿寬度 */
+    width: 100%;
+    min-width: 100%;
+    flex: none;
+  }
+  
+  .beclass-form iframe, 
+  .form_pretest iframe {
+    width: 100% !important;
+    min-height: 800px; /* 保持表單長度 */
   }
 
-  .beclass-form iframe,
-  .form_pretest iframe {
-    width: 100%; /* 確保 iframe 也跟著拉寬 */
+  .section-header {
+    display: flex;           /* 改用 Flex 排版 */
+    flex-direction: column;  /* 垂直排列 */
+    align-items: center;     /* 水平置中 */
+    gap: 15px;               /* 標題與按鈕的間距 */
+  }
+
+  /* syllabus */
+  .section-header {
+    display: flex;           
+    flex-direction: column;  
+    align-items: center;     
+    gap: 8px;                /* 間距縮小 (原本15px) */
+    margin-bottom: none;     /* 整區與下方的距離 */
+  }
+
+  .section-header h2 {
+    margin-bottom: 0; 
+  }
+
+  .section-header .btn {
+    position: static;        /* 取消絕對定位 (原本是 absolute) */
+    transform: none;         /* 取消原本的垂直置中位移 */
+    right: auto;
+    
+    /* 按鈕外觀調整 */
+    display: inline-block;
+    width: auto;             /* 寬度隨文字自動調整 */
+    padding: 6px 20px;       /* 上下內距改小 */
+    font-size: 14px;         /* 字體適中 */
+    margin-top: 0;
+  }
+
+  /* 10. 活動回顧 (Gallery) 優化 */
+  .gallery-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .sidebar {
+    width: 100%;
+    flex-direction: row;       /* 改為橫向排列 */
+    overflow-x: auto;          /* 允許左右滑動 */
+    padding-bottom: 15px;      /* 預留滑動條空間 */
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    
+    /* 隱藏滾動條但保留功能 (針對 Webkit) */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+  }
+  
+  .sidebar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .event-item {
+    white-space: nowrap;       /* 文字不換行 */
+    margin-right: 10px;
+    padding: 10px 20px;        /* 加大點擊範圍 */
+    font-size: 1rem;           /* 字體加大 */
+    flex-shrink: 0;            /* 防止被壓縮 */
+  }
+  
+  /* 圖片控制鈕加大 */
+  .carousel button {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    background: rgba(255, 255, 255, 0.8); /* 增加背景色避免擋住圖片 */
+    position: absolute; /* 改為絕對定位 */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+  
+  /* 左按鈕靠左，右按鈕靠右 */
+  .carousel button:first-child { left: 0; }
+  .carousel button:last-child { right: 0; }
+
+  /* 11. 對話機器人視窗與 QR Code */
+  #chat-window {
+    width: 95vw;
+    height: 80vh;
+    position: fixed;
+    bottom: 80px;
+    right: 2.5vw;
+  }
+
+  /* 手機版 QR Code 改為底部彈出視窗，比較不擋路 */
+  #lineQRPopup {
+    width: 220px;
+    right: 1 !important;
+    top: auto;
+    bottom: -400px; /* 初始位置在底部 */
+    transform: translateX(-50%);
+    transition: bottom 0.5s ease;
+    padding: 15px;           /* 內距稍微縮小 */
+    z-index: 9999;
+  }
+  
+  #lineQRPopup.active {
+    top: auto;
+    bottom: 20px; /* 浮現到底部上方 */
+    transform: none;
+    transform: translateX(-50%);
+  }
+
+  #lineQRPopup h3 {
+    font-size: 1.1rem;       /* 標題字體改小 */
+    margin-bottom: 8px;
+  }
+  
+  #lineQRPopup img {
+    max-width: 100px;        /* 限制 QR Code 圖片大小 */
+    margin: 5px auto;
   }
 }
-
