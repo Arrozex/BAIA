@@ -99,6 +99,106 @@
 
     // 課程清單
     const courseData = { 
+      <!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>護理創新與人工智慧應用人才培育計畫</title>
+  <meta name="description" content="KMU <護理創新與人工智慧應用人才培育計畫> 課程資訊、選課網頁">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="images/logo01.png" alt="高雄醫學大學 logo">
+      </div>
+
+      <div class="title">
+        <a href="https://proj.moe.edu.tw/smartrainforest/Default.aspx">教育部智慧雨林補助</a><br>
+        <a href="index.html"><span style="color:var(--accent-light);">AI × 護理</span> 護理創新與人工智慧應用人才培育計畫</a>
+      </div>
+
+      <nav>
+        <a href="index.html">首頁<br>Home</a>
+        <a href="syllabus.html">課程內容<br>Curriculum</a>
+        <a href="registration.html">課程報名<br>Register</a>
+        <a href="presentation.html">課程活動<br>Activity</a>
+      </nav>
+    </div>
+  </header>
+
+    <main>
+        <section id="registration" class="container">
+            <h2>課程報名<br>Register</h2>
+            <h3>！請注意，課程皆需自備筆電！</h3>
+            <select id="courseSelect"> 
+              <option value="">請選擇課程</option> 
+              <option value="course1">即日起 | 基礎多媒體設計</option> 
+              <option value="course2">即日起 | 基礎機器人設計</option>
+              <option value="course3">即日起 | AI入門應用、AI多媒體設計</option> 
+              <option value="course4">2025.12.12(五) | 人工智慧與護理科學</option>
+            </select>
+
+            <div class="iframe-container" id="iframeContainer"> 
+              <p>請選擇課程以查看報名表。</p> 
+            </div>
+            
+        </section>
+    </main>
+
+  <footer>
+    <div class="container">
+      <div>© 2024 高雄醫學大學 人工智慧生醫研究院 KMU Biomedical Artificial Intelligence Academy</div>
+      <div class="contact-info">
+        校址：高雄市三民區十全一路100號<br>
+        電話：07-3121101<br>
+        傳真：07-3212062<br>
+        信箱：baiarainforest202526@gmail.com 
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    // 平滑滾動
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+      // 建立右上角 QR 視窗
+      const popup = document.createElement("div");
+      popup.id = "lineQRPopup";
+      popup.innerHTML = `
+        <h3>加入課程LINE帳號！</h3>
+        <img src="images/QRcode.png" alt="LINE群組QRcode">
+        <button id="closeQR">已經加入</button>
+      `;
+      document.body.appendChild(popup);
+
+      // 幾秒後顯示（例如 10 秒）
+      setTimeout(() => {
+        popup.classList.add("active");
+      }, 5000);
+
+      // 關閉按鈕
+      document.getElementById("closeQR").addEventListener("click", () => {
+        popup.classList.remove("active");
+      });
+    });
+
+    // 課程清單
+    const courseData = { 
       course1: { 
         form1: "https://www.beclass.com/m/showregist.php?regist_id=MzA1MDE4NTY4ZWNjMjJiNjM4OWU6U2hvd0Zvcm0=", 
         form2: "https://docs.google.com/forms/d/e/1FAIpQLSelsZbExHwlIKZy3ZWSm1dbKO024NPN6mDz3QCEKVqDv205bg/viewform?embedded=true",
@@ -131,6 +231,75 @@
         teacher: "周汎澔 / 蔡曉婷",
         tag: "<div class='course-tag'>專業領域</div>"
       },
+    };
+
+    const select = document.getElementById("courseSelect");
+    const iframeContainer = document.getElementById("iframeContainer");
+
+    function loadCourse(courseKey) {
+      const course = courseData[courseKey];  // 從資料表中找到對應課程
+      if (course) {
+        iframeContainer.innerHTML = `
+          <div class="form-reminder">
+            <ul>
+              <li style="font-size: 16px; text-align: center; list-style-type: none">${course.tag}上課日期：<span>${course.course_date}</span>、上課地點：<span>${course.location}</span><br>
+                開課老師：<span>${course.teacher}</span></li>
+                <a href="https://drive.google.com/drive/folders/1YWAuZ4e-akdFillL_GYU8P9F1Ppm7Wjo?usp=sharing" style="display: block; text-align: center; font-size: large;">【點擊查看詳細課程安排與說明】</a>
+                1. 首先請使用左側表單進行課程報名，本課程<span style="color: #d32f2f">報名期限為開課前一天止</span>，逾期恕不受理。<br>
+                2. 報名完成後請填寫右側前測問卷，作為課程前學習狀況評估之用。 <span style="color: #d32f2f">請每堂課都填寫一份，</span>填寫期限為上課前止。<br>
+                3. 課程當天若臨時不克出席，請務必使用左側beclass表單取消報名，以利候補學員遞補。<br>
+                4. 若未能提前取消報名且無故缺席者，<span style="color: #d32f2f">達三次者將無法參加本計畫後續課程。</span><br>
+              </ul>
+          </div>
+
+          <div class="form-flex">
+            <div class="beclass-form">
+              <iframe src="${course.form1}"FRAMEBORDER="0" 
+                height="600" 
+                width="440" 
+                marginwidth="0" 
+                marginheight="0" 
+                name="beclassmainframe" 
+                id="beclassmainframe">
+                載入中...>
+              </iframe>
+            </div>
+
+            <div class="form_pretest">
+              <iframe src="${course.form2}"
+                width="640" 
+                height="600" 
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0">
+                載入中...>
+              </iframe>
+            </div>
+          </div>
+        `;
+        // 更新下拉選單顯示目前選擇的課程
+        select.value = courseKey;
+      } else {
+        iframeContainer.innerHTML = "<p>請選擇課程以查看報名表。</p>";
+      }
+    }
+
+    select.addEventListener("change", () => {
+      const selected = select.value;
+      // 更新網址但不重新整理
+      history.replaceState(null, "", "?course=" + selected);
+      loadCourse(selected);
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const courseFromURL = params.get("course"); // 取得 URL 中的 course 值
+    if (courseFromURL) {
+      loadCourse(courseFromURL);
+    }
+  </script>
+</body>
+</html>
+
     };
 
     const select = document.getElementById("courseSelect");
