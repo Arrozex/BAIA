@@ -1001,13 +1001,14 @@ footer .container {
   }
 
   .container {
-    width: 100%;
+    width: 95%;
     padding: 0 20px;
   }
 
   /* 2. Header 優化：隱藏圖片，只留文字 */
   header .container {
     flex-direction: column;
+    width: 100% !important;
     gap: 10px;
     align-items: center; /* 置中對齊 */
   }
