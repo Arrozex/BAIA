@@ -211,6 +211,26 @@ nav a:hover {
   padding: 8px 0;
 }
 
+.news-auto .sec-title {
+  font-size: 24px; 
+  text-align: center; 
+  letter-spacing: 1px; 
+  background: #e0ecd7; 
+  border-radius: 8px; 
+  margin: 8px; 
+  padding: 4px 0;
+}
+
+.news-manual .sec-title {
+  font-size: 24px; 
+  text-align: center; 
+  letter-spacing: 1px; 
+  background: #dbdbdb; 
+  border-radius: 8px; 
+  margin: 8px; 
+  padding: 4px 0;
+}
+
 .news-card {
   background: var(--card-bg);
   border-radius: var(--radius);
@@ -285,8 +305,28 @@ nav a:hover {
     color: #9d1422;              
 }
 /* ================================
-   首頁 聯合師資
+   首頁 介紹、聯合師資
 ================================= */
+.course-overview {
+  margin:6px 0 0; 
+  padding-left:16px;
+}
+
+.course-overview span{
+  color:var(--accent); 
+  font-weight: bolder;
+}
+
+.course-overview a {
+  color:#a0a0a0; 
+  text-decoration:none; 
+  font-size:smaller;
+}
+
+#collabrate h3 {
+  text-align: center; 
+  margin: 30px 0 8px;
+}
 
 .colab-grid {
   display: grid;
@@ -340,6 +380,12 @@ nav a:hover {
   font-weight: 600;
   color: #4c7e25;
   text-decoration: none;
+}
+
+.more-info a:hover {
+  background: #ece7d7;
+  font-weight: 600;
+  color: #7e4925;
 }
 
 .buttons-split {
@@ -441,6 +487,8 @@ nav a:hover {
 .intro-pics img {
   display: inline-block;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-width:75%; 
+  border-radius:8px;
 }
 
 .intro-text {
@@ -453,6 +501,20 @@ nav a:hover {
   text-align: justify;
 }
 
+.intro-text ul{
+  margin-top: 6px; 
+  padding-left: 20px;
+}
+
+.intro-text span{
+  font-weight: 600;
+}
+
+.text-title {
+  font-size: 22px; 
+  font-weight: 600;
+}
+
 /* ================================
    首頁 按鈕樣式
 ================================= */
@@ -460,7 +522,7 @@ nav a:hover {
   display: flex;
   justify-content: center;
   gap: 50px;
-  margin-top: 20px;
+  margin:10px auto 50px 60px;
 }
 
 #button-animation .btn {
@@ -589,6 +651,9 @@ nav a:hover {
 
 .form-reminder li {
   line-height: 2;
+  font-size: 16px; 
+  text-align: center; 
+  list-style-type: none;
 }
 
 .form-reminder span {
@@ -596,19 +661,18 @@ nav a:hover {
   font-weight: 500;
 }
 
-.iframe-container p{
-  text-align: center;
+.form-reminder a {
+  display: block; 
+  text-align: center; 
+  font-size: large;
 }
 
-.course-tag {
-  display: inline-block;
-  background-color: #dbbdeedb;   /* 預設藍色，可自行換 */
-  color: #61008fc1;
-  font-weight: bold;
-  font-size: 14px;
-  padding: 1px 8px;
-  margin-right: 6px;
-  border-radius: 8px;
+.form-reminder .highlighting {
+  color: #d32f2f
+}
+
+.iframe-container p{
+  text-align: center;
 }
 
 .form-flex {
@@ -633,6 +697,29 @@ nav a:hover {
   width: 100%;
   border-radius: 8px;
   border: 1px solid #eee;
+}
+
+/*course types tag*/
+.course-tag {
+  display: inline-block;
+  background-color: #dbbdeedb;   /* 預設藍色，可自行換 */
+  color: #61008fc1;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 1px 8px;
+  margin-right: 6px;
+  border-radius: 8px;
+}
+
+.course-tag-yellow {
+  display: inline-block;
+  background-color: var(--tag-yellow); 
+  color: var(--tag-yellow-dark);
+  font-weight: bold;
+  font-size: 14px;
+  padding: 1px 8px;
+  margin-right: 6px;
+  border-radius: 8px;
 }
 
 /* ================================
@@ -986,31 +1073,39 @@ footer .container {
 /* ================================
    RWD 響應式設計
 ================================= */
-/* ================================
-   RWD 響應式設計 (手機版優化)
-================================= */
+/* 1. 字體大小與間距調整 */
 @media (max-width: 768px) {
-  /* 1. 字體大小與間距調整 */
   html {
-    font-size: 16px; /* 確保手機上基準字體夠大 */
+    font-size: 14px; /* 手機常用字體大小 */
+  }
+
+  body {
+    line-height: 1.5;
+    font-size: 14px;
   }
   
   h2 {
-    font-size: 1.8rem; /* 標題稍微縮小以免換行過多 */
+    font-size: 1.5rem; /* 標題縮小 */
     margin-bottom: 20px;
   }
 
   .container {
     width: 95%;
-    padding: 0 20px;
+    padding: 0 15px;
   }
 
-  /* 2. Header 優化：隱藏圖片，只留文字 */
+  header {
+    padding: 8px 0;
+  }
+
   header .container {
-    flex-direction: column;
     width: 100% !important;
-    gap: 10px;
-    align-items: center; /* 置中對齊 */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px;
   }
 
   header .logo img {
@@ -1018,22 +1113,32 @@ footer .container {
   }
 
   header .title {
-    text-align: center; /* 標題文字置中 */
-    font-size: 1.3rem;
+    text-align: left;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    flex: 1;
+    flex-shrink: 0;
+  }
+
+  header .title a:first-child {
+    font-size: 0.75rem;
   }
 
   nav {
-    justify-content: center;
+    display: flex;
+    justify-content: flex-end;
     flex-wrap: wrap;
+    align-items: center;
     margin-left: 0;
-    gap: 12px;
-    width: 100%;
-    padding-bottom: 10px; /* 增加底部空間 */
+    gap: 4px;
+    width: auto;
+    flex-shrink: 0;
   }
   
   nav a {
-    font-size: 1rem; /* 導航文字加大 */
-    padding: 5px;
+    font-size: 0.8rem;
+    padding: 6px 4px;
+    white-space: nowrap;
   }
 
   /* 3. 圖片與 Iframe RWD */
@@ -1086,24 +1191,73 @@ footer .container {
   }
 
   /* 8. 課程介紹排版 */
+  section {
+    padding: 10px 0;
+  }
+
+  .section-header {
+    position: relative !important;
+    display: flex;           
+    flex-direction: row;  
+    justify-content: center;
+    align-items: center;     
+    padding: 0 10px;   
+    margin-bottom: 0px;     /* 整區與下方的距離 */
+    position: static;
+  }
+
+  .section-header h2 {
+    margin-bottom: 0; 
+    text-align: center !important;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .section-header .btn {
+    position: absolute;
+    right: 0;       
+    transform: translateY(-50%);        
+    top: 50%;
+    
+    /* 按鈕外觀調整 */
+    display: inline-block;
+    width: auto;             /* 寬度隨文字自動調整 */
+    padding: 6px 20px;       /* 上下內距改小 */
+    font-size: 14px;         /* 字體適中 */
+    margin: 0;
+    white-space: nowrap;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+
   .intro-items {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+
+  .intro-items h3{
+    margin: 10px 0 5px 0;   
+    font-size: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   
-  .intro-pics, .intro-text {
+  .intro-pics {
     min-width: auto !important;
     width: 100%;
   }
 
+  .intro-text {
+    min-width: auto !important;
+    width: 85%;
+  }
+
   .intro-pics img {
-    /* 把圖片縮小一點，不要滿版 100%，留點呼吸空間 */
     max-width: 90% !important; 
     height: auto;
     border-radius: 8px;
-    
-    /* 確保圖片本身也置中 */
     display: block; 
     margin: 0 auto;
   }
@@ -1112,11 +1266,7 @@ footer .container {
     width: 95%; /* 文字也稍微內縮一點，不要貼邊 */
     padding: 0 10px;
     text-align: justify; /* 文字左右對齊，閱讀較整齊 */
-  }
-  
-  .intro-text {
-    padding: 0;
-    text-align: left; /* 手機版靠左閱讀較舒適 */
+    margin-top: 0;
   }
 
   /* 9. 報名頁表單 */
@@ -1135,39 +1285,6 @@ footer .container {
   .form_pretest iframe {
     width: 100% !important;
     min-height: 800px; /* 保持表單長度 */
-  }
-
-  .section-header {
-    display: flex;           /* 改用 Flex 排版 */
-    flex-direction: column;  /* 垂直排列 */
-    align-items: center;     /* 水平置中 */
-    gap: 15px;               /* 標題與按鈕的間距 */
-  }
-
-  /* syllabus */
-  .section-header {
-    display: flex;           
-    flex-direction: column;  
-    align-items: center;     
-    gap: 8px;                /* 間距縮小 (原本15px) */
-    margin-bottom: none;     /* 整區與下方的距離 */
-  }
-
-  .section-header h2 {
-    margin-bottom: 0; 
-  }
-
-  .section-header .btn {
-    position: static;        /* 取消絕對定位 (原本是 absolute) */
-    transform: none;         /* 取消原本的垂直置中位移 */
-    right: auto;
-    
-    /* 按鈕外觀調整 */
-    display: inline-block;
-    width: auto;             /* 寬度隨文字自動調整 */
-    padding: 6px 20px;       /* 上下內距改小 */
-    font-size: 14px;         /* 字體適中 */
-    margin-top: 0;
   }
 
   /* 10. 活動回顧 (Gallery) 優化 */
@@ -1203,6 +1320,12 @@ footer .container {
     white-space: normal;   /* 允許文字換行，避免字太長被切掉 */
     font-size: 12px;
     padding: 10px;
+  }
+
+  .image-container img {
+    max-width: 80% !important;  /* 限制最大寬度為螢幕的 80% */
+    display: block;
+    margin: 0 auto;
   }
 
   .carousel-controls button {
