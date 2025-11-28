@@ -1286,6 +1286,18 @@ footer .container {
   .form-flex {
     flex-direction: column;
   }
+
+  #registration select {
+    display: block;
+    margin: 0 auto;
+    font-size: 16px;           /* 下拉選單文字大小 */
+    padding: 8px;              /* 內距 */
+    margin-bottom: 20px;
+    max-width: 100%;
+    white-space: normal;
+    border: 1px solid; 
+    border-radius: 4px;
+  }
   
   .beclass-form, 
   .form_pretest {
@@ -1345,8 +1357,7 @@ footer .container {
   }
 
   .image-container img {
-    width: 100%;
-    max-width: 100% !important;  /* 限制最大寬度為螢幕的 80% */
+    max-width: 80%;
     display: block;
     object-fit: contain;
     margin: 0 auto;
