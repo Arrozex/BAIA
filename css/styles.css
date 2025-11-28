@@ -11,6 +11,8 @@
   --card-bg: #ffffff;          /* 卡片背景色 */
   --tag-yellow: #eeebbddb;
   --tag-yellow-dark: #8f6200c1;
+  --tag-light: #b5daf1db;
+  --tag-light-dark: #00118fc1;
 
   --gap: 20px;              /* 元素間距 */
   --border-radius: 8px;
@@ -722,6 +724,17 @@ nav a:hover {
   border-radius: 8px;
 }
 
+.course-tag-light{
+  display: inline-block;
+  background-color: var(--tag-light); 
+  color: var(--tag-light-dark);
+  font-weight: bold;
+  font-size: 14px;
+  padding: 1px 8px;
+  margin-right: 6px;
+  border-radius: 8px;
+}
+
 /* ================================
     活動成果
 ================================= */
@@ -1290,7 +1303,10 @@ footer .container {
   /* 10. 活動回顧 (Gallery) 優化 */
   .gallery-container {
     flex-direction: column;
-    padding: 10px;
+    padding: 20px 40px;
+
+    width: 100%;
+    box-sizing: border-box;
   }
   
   .sidebar {
@@ -1303,11 +1319,6 @@ footer .container {
     overflow: visible;
 
     border-right: none;
-    border-bottom: none;
-    
-    /* 隱藏滾動條但保留功能 (針對 Webkit) */
-    scrollbar-width: none; 
-    -ms-overflow-style: none;
   }
   
   .sidebar::-webkit-scrollbar {
@@ -1316,15 +1327,28 @@ footer .container {
   
   .event-item {
     margin: 0;             /* 清除舊 margin */
-    flex: 1 1 45%;         /* 讓每個按鈕佔約一半寬度 (兩欄排列) */
-    white-space: normal;   /* 允許文字換行，避免字太長被切掉 */
+    flex: 0 0 auto;         /* 讓每個按鈕佔約一半寬度 (兩欄排列) */
+    white-space: normal;   
     font-size: 12px;
     padding: 10px;
   }
 
+  .carousel {
+    width: 100%;
+    padding: 0 5px; 
+  }
+
+  .image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
   .image-container img {
-    max-width: 80% !important;  /* 限制最大寬度為螢幕的 80% */
+    width: 100%;
+    max-width: 100% !important;  /* 限制最大寬度為螢幕的 80% */
     display: block;
+    object-fit: contain;
     margin: 0 auto;
   }
 
