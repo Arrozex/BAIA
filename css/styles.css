@@ -1333,10 +1333,6 @@ footer .container {
     border-right: none;
   }
   
-  .sidebar::-webkit-scrollbar {
-    display: none;
-  }
-  
   .event-item {
     margin: 0;             /* 清除舊 margin */
     flex: 0 0 auto;         /* 讓每個按鈕佔約一半寬度 (兩欄排列) */
@@ -1351,13 +1347,13 @@ footer .container {
   }
 
   .image-container {
-    width: 100%;
+    width: 80%;
     display: flex;
     justify-content: center;
   }
 
   .image-container img {
-    max-width: 80%;
+    max-width: 100%;
     display: block;
     object-fit: contain;
     margin: 0 auto;
