@@ -1315,10 +1315,10 @@ footer .container {
   /* 10. 活動回顧 (Gallery) 優化 */
   .gallery-container {
     flex-direction: column;
-    padding: 20px 40px;
-
+    padding: 20px 10px; 
     width: 100%;
     box-sizing: border-box;
+    overflow-x: hidden; 
   }
   
   .sidebar {
@@ -1348,23 +1348,27 @@ footer .container {
     flex-direction: column; 
     align-items: center;    
     justify-content: center;
-    
-    padding: 0 5px;
+    padding: 0;
   }
 
   .image-container {
-    width: 80%;
-    padding: 0 20px; 
+    width: 100%;
+    padding: 0;          
+    box-sizing: border-box;
+    
     display: flex;
+    flex-direction: column; 
     align-items: center;
     margin: 0 auto;
   }
 
   .image-container img {
-    max-width: 50%;
+    width: 100%;         
+    max-width: 100%;
+    height: auto;      
     display: block;
     object-fit: contain;
-    margin: 0 auto;
+    margin: 0 auto 10px auto; /* 下方留點空隙給文字 */
   }
 
   .carousel-controls button {
