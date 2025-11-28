@@ -1312,7 +1312,7 @@ footer .container {
     min-height: 800px; /* 保持表單長度 */
   }
 
-  /* 10. 活動回顧 (Gallery) 優化 */
+  /* 10. 活動回顧 (Gallery) */
   .gallery-container {
     flex-direction: column;
     padding: 20px 10px; 
@@ -1369,6 +1369,12 @@ footer .container {
     display: block;
     object-fit: contain;
     margin: 0 auto 10px auto; /* 下方留點空隙給文字 */
+  }
+
+  .image-caption {
+    text-align: center;
+    width: 100%;
+    padding: 5px 0;
   }
 
   .carousel-controls button {
