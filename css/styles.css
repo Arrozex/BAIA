@@ -972,6 +972,98 @@ footer .container {
   font-family: sans-serif;
 }
 
+/* 聊天視窗主體設定 (原本可能已有，確保一下) */
+#chat-window {
+  display: none; /* 預設隱藏 */
+  flex-direction: column;
+  /* 建議固定寬高，或依據你的設計調整 */
+  width: 350px;
+  height: 500px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  /* 定位設定保持原本的即可 */
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 1000;
+  overflow: hidden; /* 防止圓角被切掉 */
+}
+
+/* 訊息顯示區 */
+.chat-messages {
+  flex: 1; /* 佔滿剩餘空間 */
+  padding: 15px;
+  overflow-y: auto; /* 內容多時可捲動 */
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 訊息氣泡通用樣式 */
+.message {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 15px;
+  font-size: 15px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+/* 機器人訊息樣式 */
+.bot-message {
+  align-self: flex-start;
+  background-color: #e0e0e0;
+  color: #333;
+  border-bottom-left-radius: 2px;
+}
+
+/* 使用者訊息樣式 */
+.user-message {
+  align-self: flex-end;
+  background-color: var(--accent); /* 配合你的網站主色 */
+  color: white;
+  border-bottom-right-radius: 2px;
+}
+
+/* 輸入區塊 */
+.chat-input-area {
+  display: flex;
+  padding: 10px;
+  background: white;
+  border-top: 1px solid #ddd;
+}
+
+.chat-input-area input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  font-size: 14px;
+}
+
+.chat-input-area button {
+  margin-left: 8px;
+  padding: 8px 16px;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.chat-input-area button:hover {
+  background-color: #2ca238;
+}
+
+.chat-input-area button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
 /* 提醒氣泡 */
 .chat-notice {
   position: absolute;
@@ -1312,7 +1404,7 @@ footer .container {
     min-height: 800px; /* 保持表單長度 */
   }
 
-  /* 10. 活動回顧 (Gallery) */
+  /* 10. 活動回顧 (Gallery) 優化 */
   .gallery-container {
     flex-direction: column;
     padding: 20px 10px; 
@@ -1362,6 +1454,13 @@ footer .container {
     margin: 0 auto;
   }
 
+  .image-caption {
+    position: absolute;
+    text-align: center;
+    right: auto;
+    max-width: 80%;
+  }
+
   .image-container img {
     width: 100%;         
     max-width: 100%;
@@ -1369,13 +1468,6 @@ footer .container {
     display: block;
     object-fit: contain;
     margin: 0 auto 10px auto; /* 下方留點空隙給文字 */
-  }
-
-  .image-caption {
-    position: absolute;
-    text-align: center;
-    right: auto;
-    max-width: 80%;
   }
 
   .carousel-controls button {
