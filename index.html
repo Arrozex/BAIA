@@ -204,14 +204,21 @@
     </div>
 
     <div id="chat-window">
-        <div class="chat-header">
-            <span>🤖AI FAQ helper</span>
-            <button onclick="toggleChat()" class="close-btn">×</button>
+      <div class="chat-header">
+        <span>🤖 AI 課程小幫手</span>
+        <button onclick="toggleChat()" class="close-btn">×</button>
+      </div>
+
+      <div id="chat-messages" class="chat-messages">
+        <div class="message bot-message">
+          嗨！我是你的 AI 助理。關於護理創新計畫的課程、時間或報名問題，都可以問我喔！(資料來源：官網)
         </div>
-        <iframe 
-            src="https://yitxx-baia-faqbot.hf.space/?__theme=light" 
-            frameborder="0"
-        ></iframe>
+      </div>
+
+      <div class="chat-input-area">
+        <input type="text" id="user-input" placeholder="請輸入您的問題..." onkeypress="handleKeyPress(event)">
+        <button onclick="sendMessage()" id="send-btn">送出</button>
+      </div>
     </div>
 
     <button id="chat-toggle-btn" onclick="toggleChat()">
@@ -320,6 +327,96 @@
             btn.innerHTML = '☁️'; // 變回對話圖示
 
             if (notice) notice.style.display = 'block';
+        }
+    }
+
+    const API_URL = "https://yitxx-baianrf-faqbot.hf.space/chat"; 
+
+    async function sendMessage() {
+        const inputField = document.getElementById("user-input");
+        const sendBtn = document.getElementById("send-btn");
+        const message = inputField.value.trim();
+        const chatBox = document.getElementById("chat-messages");
+
+        if (!message) return;
+
+        // 1. 顯示使用者訊息
+        addMessageToChat(message, "user");
+        inputField.value = ""; // 清空輸入框
+        inputField.disabled = true; // 鎖定輸入框避免重複送出
+        sendBtn.disabled = true;
+
+        // 2. 顯示 "思考中..." (使用者體驗優化)
+        const loadingId = addMessageToChat("思考中...", "bot", true);
+
+        try {
+            // 3. 呼叫 Flask API
+            const response = await fetch(API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ message: message })
+            });
+
+            const data = await response.json();
+
+            // 4. 移除 loading 訊息，顯示 API 回傳的結果
+            removeMessage(loadingId);
+            
+            if (data.reply) {
+                addMessageToChat(data.reply, "bot");
+            } else {
+                addMessageToChat("抱歉，系統似乎出了點問題。", "bot");
+            }
+
+        } catch (error) {
+            console.error("API Error:", error);
+            removeMessage(loadingId);
+            addMessageToChat("連線失敗，請確認後端伺服器是否已啟動。", "bot");
+        } finally {
+            // 解鎖輸入框
+            inputField.disabled = false;
+            sendBtn.disabled = false;
+            inputField.focus();
+        }
+    }
+
+    // 輔助函式：將訊息加入畫面
+    function addMessageToChat(text, sender, isLoading = false) {
+        const chatBox = document.getElementById("chat-messages");
+        const msgDiv = document.createElement("div");
+        
+        // 產生唯一 ID (方便移除 loading 訊息)
+        const msgId = "msg-" + Date.now();
+        msgDiv.id = msgId;
+
+        msgDiv.className = `message ${sender}-message`;
+        msgDiv.textContent = text;
+        
+        if (isLoading) {
+            msgDiv.style.opacity = "0.7";
+            msgDiv.textContent = "思考中...";
+        }
+
+        chatBox.appendChild(msgDiv);
+        
+        // 自動捲動到底部
+        chatBox.scrollTop = chatBox.scrollHeight;
+        
+        return msgId;
+    }
+
+    // 輔助函式：移除訊息 (用於取代 loading)
+    function removeMessage(id) {
+        const el = document.getElementById(id);
+        if (el) el.remove();
+    }
+
+    // 輔助函式：按下 Enter 鍵也能送出
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            sendMessage();
         }
     }
   </script>
